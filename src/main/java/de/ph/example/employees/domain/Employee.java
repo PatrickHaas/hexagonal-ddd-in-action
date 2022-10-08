@@ -1,6 +1,7 @@
 package de.ph.example.employees.domain;
 
 import org.jmolecules.ddd.annotation.AggregateRoot;
+import org.slf4j.spi.LocationAwareLogger;
 
 import java.time.LocalDate;
 
@@ -19,6 +20,15 @@ public class Employee {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
+    }
+
+    public Employee(EmployeeId id, FirstName firstName, LastName lastName, Birthdate birthdate, LocalDate hiredOn, LocalDate firedOn) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthdate = birthdate;
+        this.hiredOn = hiredOn;
+        this.firedOn = firedOn;
     }
 
     public FirstName getFirstName() {

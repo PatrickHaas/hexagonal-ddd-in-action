@@ -15,8 +15,13 @@ public class InMemoryEmployees implements Employees {
     @Override
     public Employee save(Employee employee) {
         EmployeeId employeeId = Optional.ofNullable(employee.getId()).orElseGet(EmployeeId::random);
-        Employee savedEmployee = new Employee(employeeId, employee.getFirstName(), employee.getLastName(), employee.getBirthdate());
+        Employee savedEmployee = new Employee(employeeId, employee.getFirstName(), employee.getLastName(), employee.getBirthdate(), employee.getHiredOn(), employee.getFiredOn());
         employees.put(savedEmployee.getId(), savedEmployee);
         return savedEmployee;
+    }
+
+    @Override
+    public Optional<Employee> findById(EmployeeId id) {
+        return Optional.ofNullable(employees.get(id));
     }
 }
