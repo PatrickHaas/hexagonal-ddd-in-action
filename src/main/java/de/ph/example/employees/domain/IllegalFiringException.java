@@ -1,4 +1,4 @@
-package de.ph.example.employees.domain.model;
+package de.ph.example.employees.domain;
 
 public class IllegalFiringException extends RuntimeException {
     public IllegalFiringException(Employee employee) {

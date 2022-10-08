@@ -1,7 +1,6 @@
-package de.ph.example.employees.domain.model;
+package de.ph.example.employees.domain;
 
 import org.jmolecules.ddd.annotation.AggregateRoot;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 

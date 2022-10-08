@@ -1,4 +1,4 @@
-package de.ph.example.employees.domain.model;
+package de.ph.example.employees.domain;
 
 import org.jmolecules.ddd.annotation.ValueObject;
 

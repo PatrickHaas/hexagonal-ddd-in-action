@@ -1,5 +1,6 @@
-package de.ph.example.employees.domain.model;
+package de.ph.example.employees.domain;
 
+import de.ph.example.employees.domain.*;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
