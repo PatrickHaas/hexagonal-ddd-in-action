@@ -5,19 +5,9 @@ import org.jmolecules.ddd.annotation.ValueObject;
 import java.util.UUID;
 
 @ValueObject
-public class EmployeeId {
-
-   public static EmployeeId random() {
-       return new EmployeeId(UUID.randomUUID());
-   }
-
-    private final UUID value;
-
-    public EmployeeId(UUID value) {
-        this.value = value;
+public record EmployeeId(UUID value) {
+    public static EmployeeId random() {
+        return new EmployeeId(UUID.randomUUID());
     }
 
-    public UUID getValue() {
-        return value;
-    }
 }

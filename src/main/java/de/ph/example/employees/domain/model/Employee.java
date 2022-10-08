@@ -1,16 +1,19 @@
 package de.ph.example.employees.domain.model;
 
 import org.jmolecules.ddd.annotation.AggregateRoot;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 
 @AggregateRoot
 public class Employee {
 
-    private EmployeeId id;
-    private FirstName firstName;
-    private LastName lastName;
-    private Birthdate birthdate;
+    private final EmployeeId id;
+    private final FirstName firstName;
+    private final LastName lastName;
+    private final Birthdate birthdate;
+    private LocalDate hiredOn;
+    private LocalDate firedOn;
 
     public Employee(EmployeeId id, FirstName firstName, LastName lastName, Birthdate birthdate) {
         this.id = id;
@@ -33,5 +36,24 @@ public class Employee {
 
     public EmployeeId getId() {
         return id;
+    }
+
+    public void hire() {
+        this.hiredOn = LocalDate.now();
+    }
+
+    public LocalDate getHiredOn() {
+        return hiredOn;
+    }
+
+    public void fire() {
+        if (hiredOn == null) {
+            throw new IllegalFiringException(this);
+        }
+        this.firedOn = LocalDate.now();
+    }
+
+    public LocalDate getFiredOn() {
+        return firedOn;
     }
 }

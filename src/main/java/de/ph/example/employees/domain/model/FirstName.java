@@ -5,7 +5,7 @@ import org.jmolecules.ddd.annotation.ValueObject;
 @ValueObject
 public record FirstName(String value) {
     public FirstName {
-        if (value == null || value.length() < 2) {
+        if (value == null || value.trim().length() < 2) {
             throw new IllegalArgumentException("first name must be at least 2 characters long");
         }
     }
