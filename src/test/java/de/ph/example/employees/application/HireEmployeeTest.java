@@ -1,5 +1,6 @@
 package de.ph.example.employees.application;
 
+import de.ph.example.employees.infrastructure.storage.InMemoryEmployees;
 import de.ph.example.employees.domain.*;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ public class HireEmployeeTest {
         InMemoryEmployees employees = new InMemoryEmployees();
         HireEmployee hireEmployee = new HireEmployee(employees);
         EmployeeId employeeId = EmployeeId.random();
-        Employee employee = hireEmployee.with(employeeId, new FirstName("Steve"), new LastName("Rogers"), new Birthdate(LocalDate.of(1918, 7, 4)));
+        Employee employee = hireEmployee.with(employeeId, new FirstName("Steve"), new LastName("Rogers"), new Birthdate(LocalDate.of(1918, 7, 4))).block();
         assertThat(employee.getId()).isEqualTo(employeeId);
     }
 
@@ -22,7 +23,7 @@ public class HireEmployeeTest {
     void hireEmployee_shouldHireAndSaveTheEmployeeWithARandomId_whenGivenIdIsNull() {
         InMemoryEmployees employees = new InMemoryEmployees();
         HireEmployee hireEmployee = new HireEmployee(employees);
-        Employee employee = hireEmployee.with(new FirstName("Steve"), new LastName("Rogers"), new Birthdate(LocalDate.of(1918, 7, 4)));
+        Employee employee = hireEmployee.with(new FirstName("Steve"), new LastName("Rogers"), new Birthdate(LocalDate.of(1918, 7, 4))).block();
         assertThat(employee.getId()).isNotNull();
     }
 }

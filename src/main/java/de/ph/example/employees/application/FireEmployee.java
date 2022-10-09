@@ -3,6 +3,7 @@ package de.ph.example.employees.application;
 import de.ph.example.employees.domain.Employee;
 import de.ph.example.employees.domain.EmployeeId;
 import de.ph.example.employees.domain.Employees;
+import reactor.core.publisher.Mono;
 
 public class FireEmployee {
     private Employees employees;
@@ -11,9 +12,9 @@ public class FireEmployee {
         this.employees = employees;
     }
 
-    public void with(EmployeeId id) {
-        Employee employee = employees.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
-        employee.fire();
-        employees.save(employee);
+    public Mono<Employee> with(EmployeeId id) {
+        return employees.findById(id)
+                .doOnNext(Employee::fire)
+                .flatMap(employee -> employees.save(employee));
     }
 }
