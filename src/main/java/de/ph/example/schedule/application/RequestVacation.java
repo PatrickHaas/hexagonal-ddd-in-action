@@ -2,8 +2,8 @@ package de.ph.example.schedule.application;
 
 import de.ph.example.employees.domain.EmployeeId;
 import de.ph.example.schedule.domain.RemainingLeave;
-import de.ph.example.schedule.domain.VacationRequestFactory;
 import de.ph.example.schedule.domain.VacationRequest;
+import de.ph.example.schedule.domain.VacationRequestFactory;
 import de.ph.example.schedule.domain.VacationSpan;
 
 import java.time.LocalDate;
@@ -28,7 +28,7 @@ public class RequestVacation {
         int[] years = Stream.of(span.start().getYear(), span.end().getYear()).mapToInt(Integer::intValue).distinct().toArray();
         List<LocalDate> holidays = holidayRepository.findByYears(years);
         RemainingLeave remainingLeave = calculateRemainingLeave.with(employeeId, years);
-        VacationRequest vacationRequest = vacationRequestFactory.requestVacation(employeeId, span, holidays, remainingLeave);
+        VacationRequest vacationRequest = vacationRequestFactory.create(employeeId, span, holidays, remainingLeave);
         return vacationRequestRepository.save(vacationRequest);
     }
 
