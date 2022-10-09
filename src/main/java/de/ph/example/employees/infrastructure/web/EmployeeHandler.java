@@ -32,7 +32,7 @@ public class EmployeeHandler {
                                 new LastName(hireEmployeeRequest.lastName()),
                                 new Birthdate(hireEmployeeRequest.birthdate())
                         ))
-                .flatMap(employee -> ServerResponse.created(URI.create("/employees/" + employee.getId())).build());
+                .flatMap(employee -> ServerResponse.created(URI.create("/employees/" + employee.getId().value())).build());
     }
 
     public Mono<ServerResponse> fire(ServerRequest serverRequest) {

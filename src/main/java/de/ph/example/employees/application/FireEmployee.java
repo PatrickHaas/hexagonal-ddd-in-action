@@ -3,10 +3,12 @@ package de.ph.example.employees.application;
 import de.ph.example.employees.domain.Employee;
 import de.ph.example.employees.domain.EmployeeId;
 import de.ph.example.employees.domain.Employees;
+import org.jmolecules.ddd.annotation.Service;
 import reactor.core.publisher.Mono;
 
+@Service
 public class FireEmployee {
-    private Employees employees;
+    private final Employees employees;
 
     public FireEmployee(Employees employees) {
         this.employees = employees;
@@ -15,6 +17,6 @@ public class FireEmployee {
     public Mono<Employee> with(EmployeeId id) {
         return employees.findById(id)
                 .doOnNext(Employee::fire)
-                .flatMap(employee -> employees.save(employee));
+                .flatMap(employees::save);
     }
 }
