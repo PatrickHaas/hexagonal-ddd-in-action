@@ -16,11 +16,11 @@ public class FireEmployeeTest {
         Employee employee = new Employee(EmployeeId.random(), new FirstName("Tony"), new LastName("Stark"), new Birthdate(LocalDate.of(1970, 5, 29)));
         employee.hire();
         Employee savedEmployee = employees.save(employee).block();
-        assertThat(savedEmployee.getHiredOn()).isEqualTo(LocalDate.now());
+        assertThat(savedEmployee.getHireDate().value()).isEqualTo(LocalDate.now());
         FireEmployee fireEmployee = new FireEmployee(employees);
         fireEmployee.with(savedEmployee.getId()).block();
         Employee firedEmployee = employees.findById(savedEmployee.getId()).block();
-        assertThat(firedEmployee.getFiredOn()).isEqualTo(LocalDate.now());
+        assertThat(firedEmployee.getFireDate().value()).isEqualTo(LocalDate.now());
     }
 
 }

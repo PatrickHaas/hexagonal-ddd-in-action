@@ -1,6 +1,5 @@
 package de.ph.example.employees.domain;
 
-import de.ph.example.employees.domain.*;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -23,7 +22,7 @@ public class EmployeeTest {
     void hire_shouldSetHiringDate() {
         var employee = new Employee(EmployeeId.random(), new FirstName("Patrick"), new LastName("Haas"), new Birthdate(LocalDate.of(1987, 3, 9)));
         employee.hire();
-        assertThat(employee.getHiredOn()).isEqualTo(LocalDate.now());
+        assertThat(employee.getHireDate().value()).isEqualTo(LocalDate.now());
     }
 
     @Test
@@ -59,7 +58,7 @@ public class EmployeeTest {
         var employee = new Employee(EmployeeId.random(), new FirstName("Patrick"), new LastName("Haas"), new Birthdate(LocalDate.of(1987, 3, 9)));
         employee.hire();
         employee.fire();
-        assertThat(employee.getFiredOn()).isEqualTo(LocalDate.now());
+        assertThat(employee.getFireDate().value()).isEqualTo(LocalDate.now());
     }
 
     @Test

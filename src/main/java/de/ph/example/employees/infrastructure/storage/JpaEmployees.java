@@ -32,8 +32,12 @@ class JpaEmployees implements Employees {
                 employee.getFirstName().value(),
                 employee.getLastName().value(),
                 employee.getBirthdate().value(),
-                employee.getHiredOn(),
-                employee.getFiredOn());
+                Optional.ofNullable(employee.getHireDate())
+                        .map(HireDate::value)
+                        .orElse(null),
+                Optional.ofNullable(employee.getFireDate())
+                        .map(FireDate::value)
+                        .orElse(null));
     }
 
     Employee fromEntity(EmployeeEntity employeeEntity) {
@@ -41,7 +45,11 @@ class JpaEmployees implements Employees {
                 new FirstName(employeeEntity.firstName()),
                 new LastName(employeeEntity.lastName()),
                 new Birthdate(employeeEntity.birthdate()),
-                employeeEntity.hiredOn(),
-                employeeEntity.firedOn());
+                Optional.ofNullable(employeeEntity.hireDate())
+                        .map(HireDate::new)
+                        .orElse(null),
+                Optional.ofNullable(employeeEntity.fireDate())
+                        .map(FireDate::new)
+                        .orElse(null));
     }
 }

@@ -1,7 +1,6 @@
 package de.ph.example.employees.domain;
 
 import org.jmolecules.ddd.annotation.AggregateRoot;
-import org.slf4j.spi.LocationAwareLogger;
 
 import java.time.LocalDate;
 
@@ -12,8 +11,8 @@ public class Employee {
     private final FirstName firstName;
     private final LastName lastName;
     private final Birthdate birthdate;
-    private LocalDate hiredOn;
-    private LocalDate firedOn;
+    private HireDate hireDate;
+    private FireDate fireDate;
 
     public Employee(EmployeeId id, FirstName firstName, LastName lastName, Birthdate birthdate) {
         this.id = id;
@@ -22,13 +21,13 @@ public class Employee {
         this.birthdate = birthdate;
     }
 
-    public Employee(EmployeeId id, FirstName firstName, LastName lastName, Birthdate birthdate, LocalDate hiredOn, LocalDate firedOn) {
+    public Employee(EmployeeId id, FirstName firstName, LastName lastName, Birthdate birthdate, HireDate hireDate, FireDate fireDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
-        this.hiredOn = hiredOn;
-        this.firedOn = firedOn;
+        this.hireDate = hireDate;
+        this.fireDate = fireDate;
     }
 
     public FirstName getFirstName() {
@@ -48,21 +47,21 @@ public class Employee {
     }
 
     public void hire() {
-        this.hiredOn = LocalDate.now();
+        this.hireDate = new HireDate(LocalDate.now());
     }
 
-    public LocalDate getHiredOn() {
-        return hiredOn;
+    public HireDate getHireDate() {
+        return hireDate;
     }
 
     public void fire() {
-        if (hiredOn == null) {
+        if (hireDate == null) {
             throw new IllegalFiringException(this);
         }
-        this.firedOn = LocalDate.now();
+        this.fireDate = new FireDate(LocalDate.now());
     }
 
-    public LocalDate getFiredOn() {
-        return firedOn;
+    public FireDate getFireDate() {
+        return fireDate;
     }
 }

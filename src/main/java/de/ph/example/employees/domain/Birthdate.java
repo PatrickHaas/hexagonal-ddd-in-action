@@ -11,4 +11,8 @@ public record Birthdate(LocalDate value) {
             throw new IllegalArgumentException("birthdate must not be empty");
         }
     }
+
+    public static Birthdate of(int year, int month, int dayOfMonth) {
+        return new Birthdate(LocalDate.of(year, month, dayOfMonth));
+    }
 }

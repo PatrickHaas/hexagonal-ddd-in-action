@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 
 @Document
-public record EmployeeEntity(@Id String id, String firstName, String lastName, LocalDate birthdate, LocalDate hiredOn,
-                             LocalDate firedOn) {
+public record EmployeeEntity(@Id String id, String firstName, String lastName, LocalDate birthdate, LocalDate hireDate,
+                             LocalDate fireDate) {
 }

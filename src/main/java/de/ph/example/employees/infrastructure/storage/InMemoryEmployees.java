@@ -16,7 +16,7 @@ public class InMemoryEmployees implements Employees {
     @Override
     public Mono<Employee> save(Employee employee) {
         EmployeeId employeeId = Optional.ofNullable(employee.getId()).orElseGet(EmployeeId::random);
-        Employee savedEmployee = new Employee(employeeId, employee.getFirstName(), employee.getLastName(), employee.getBirthdate(), employee.getHiredOn(), employee.getFiredOn());
+        Employee savedEmployee = new Employee(employeeId, employee.getFirstName(), employee.getLastName(), employee.getBirthdate(), employee.getHireDate(), employee.getFireDate());
         employees.put(savedEmployee.getId(), savedEmployee);
         return Mono.just(savedEmployee);
     }
