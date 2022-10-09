@@ -18,8 +18,8 @@ public class HireEmployee {
     }
 
     public Mono<Employee> with(EmployeeId id, FirstName firstName, LastName lastName, Birthdate birthdate) {
-        Employee employee = new Employee(id, firstName, lastName, birthdate);
-        employee.hire();
-        return employees.save(employee);
+        return Mono.just(new Employee(id, firstName, lastName, birthdate))
+                .doOnNext(Employee::hire)
+                .flatMap(employees::save);
     }
 }
