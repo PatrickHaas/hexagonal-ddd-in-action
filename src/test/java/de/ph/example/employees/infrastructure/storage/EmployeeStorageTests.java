@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataMongoTest(includeFilters = @ComponentScan.Filter(
         type = FilterType.ASSIGNABLE_TYPE,
-        classes = {StorageConfiguration.class}
+        classes = {EmployeeStorageConfiguration.class}
 ))
 @Testcontainers
 class EmployeeStorageTests {

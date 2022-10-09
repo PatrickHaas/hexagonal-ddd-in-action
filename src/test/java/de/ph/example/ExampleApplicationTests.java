@@ -1,10 +1,10 @@
-package de.ph.example.employees;
+package de.ph.example;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EmployeesApplicationTests {
+class ExampleApplicationTests {
 
 
     @Test

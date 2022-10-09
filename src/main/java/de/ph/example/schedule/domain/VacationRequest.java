@@ -71,4 +71,8 @@ public class VacationRequest {
     public VacationSpan getSpan() {
         return span;
     }
+
+    public VacationRequestStatus getStatus() {
+        return status;
+    }
 }
