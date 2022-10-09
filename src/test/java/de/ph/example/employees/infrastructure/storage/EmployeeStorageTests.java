@@ -1,6 +1,10 @@
 package de.ph.example.employees.infrastructure.storage;
 
-import de.ph.example.employees.domain.*;
+import de.ph.example.employees.application.Employees;
+import de.ph.example.employees.domain.Birthdate;
+import de.ph.example.employees.domain.Employee;
+import de.ph.example.employees.domain.FirstName;
+import de.ph.example.employees.domain.LastName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
@@ -35,10 +39,10 @@ class EmployeeStorageTests {
 
     @Test
     void save_shouldPersistEmployeeAndGiveHimAnId() {
-        Employee savedEmployee = employees.save(new Employee(null, new FirstName("Tony"), new LastName("Stark"), new Birthdate(LocalDate.of(1970, 5, 29)))).block();
+        Employee savedEmployee = employees.save(new Employee(null, new FirstName("Tony"), new LastName("Stark"), new Birthdate(LocalDate.of(1970, 5, 29))));
         assertThat(savedEmployee.getId()).isNotNull();
 
-        Employee loadedEmployee = employees.findById(savedEmployee.getId()).block();
+        Employee loadedEmployee = employees.findById(savedEmployee.getId()).orElse(null);
         assertThat(loadedEmployee).isNotNull();
         assertThat(loadedEmployee.getFirstName().value()).isEqualTo("Tony");
         assertThat(loadedEmployee.getLastName().value()).isEqualTo("Stark");

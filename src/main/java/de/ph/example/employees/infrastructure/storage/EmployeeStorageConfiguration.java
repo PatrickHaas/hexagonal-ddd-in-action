@@ -1,6 +1,6 @@
 package de.ph.example.employees.infrastructure.storage;
 
-import de.ph.example.employees.domain.Employees;
+import de.ph.example.employees.application.Employees;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 class EmployeeStorageConfiguration {
 
     @Bean
-    Employees employees(ReactiveEmployeeRepository employeeRepository) {
-        return new JpaEmployees(employeeRepository);
+    Employees employees(MongoEmployeeRepository employeeRepository) {
+        return new MongoEmployees(employeeRepository);
     }
 
 }

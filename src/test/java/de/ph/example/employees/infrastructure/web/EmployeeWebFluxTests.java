@@ -1,6 +1,7 @@
 package de.ph.example.employees.infrastructure.web;
 
-import de.ph.example.employees.domain.HireEmployee;
+import de.ph.example.employees.application.Employees;
+import de.ph.example.employees.application.HireEmployee;
 import de.ph.example.employees.domain.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.http.HttpHeaders;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
 
@@ -34,7 +34,7 @@ class EmployeeWebFluxTests {
         HireEmployeeRequest hireEmployeeRequest = new HireEmployeeRequest("Steve", "Rogers", LocalDate.of(1918, 7, 4));
         Employee employee = new Employee(EmployeeId.random(), new FirstName(hireEmployeeRequest.firstName()), new LastName(hireEmployeeRequest.lastName()), new Birthdate(hireEmployeeRequest.birthdate()));
         when(hireEmployee.with(employee.getFirstName(), employee.getLastName(), employee.getBirthdate()))
-                .thenReturn(Mono.just(employee));
+                .thenReturn(employee);
 
         WebTestClient client = WebTestClient
                 .bindToRouterFunction(routes.routes())

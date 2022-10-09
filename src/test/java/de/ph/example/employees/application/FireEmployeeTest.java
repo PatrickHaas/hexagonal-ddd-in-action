@@ -15,11 +15,11 @@ public class FireEmployeeTest {
         InMemoryEmployees employees = new InMemoryEmployees();
         Employee employee = new Employee(EmployeeId.random(), new FirstName("Tony"), new LastName("Stark"), new Birthdate(LocalDate.of(1970, 5, 29)));
         employee.hire();
-        Employee savedEmployee = employees.save(employee).block();
+        Employee savedEmployee = employees.save(employee);
         assertThat(savedEmployee.getHireDate().value()).isEqualTo(LocalDate.now());
         FireEmployee fireEmployee = new FireEmployee(employees);
-        fireEmployee.with(savedEmployee.getId()).block();
-        Employee firedEmployee = employees.findById(savedEmployee.getId()).block();
+        fireEmployee.with(savedEmployee.getId());
+        Employee firedEmployee = employees.findById(savedEmployee.getId()).orElseThrow();
         assertThat(firedEmployee.getFireDate().value()).isEqualTo(LocalDate.now());
     }
 

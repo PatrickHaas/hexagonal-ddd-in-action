@@ -1,7 +1,7 @@
 package de.ph.example.employees.infrastructure.web;
 
-import de.ph.example.employees.domain.FireEmployee;
-import de.ph.example.employees.domain.HireEmployee;
+import de.ph.example.employees.application.FireEmployee;
+import de.ph.example.employees.application.HireEmployee;
 import de.ph.example.employees.domain.Birthdate;
 import de.ph.example.employees.domain.EmployeeId;
 import de.ph.example.employees.domain.FirstName;
@@ -26,7 +26,7 @@ public class EmployeeHandler {
 
     public Mono<ServerResponse> hire(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(HireEmployeeRequest.class)
-                .flatMap(hireEmployeeRequest -> hireEmployee
+                .map(hireEmployeeRequest -> hireEmployee
                         .with(
                                 new FirstName(hireEmployeeRequest.firstName()),
                                 new LastName(hireEmployeeRequest.lastName()),
@@ -37,7 +37,7 @@ public class EmployeeHandler {
 
     public Mono<ServerResponse> fire(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(FireEmployeeRequest.class)
-                .flatMap(fireEmployeeRequest -> fireEmployee.with(new EmployeeId(fireEmployeeRequest.id())))
+                .map(fireEmployeeRequest -> fireEmployee.with(new EmployeeId(fireEmployeeRequest.id())))
                 .flatMap(employee -> ServerResponse.noContent().build());
     }
 
