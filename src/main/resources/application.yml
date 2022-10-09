@@ -5,3 +5,8 @@ spring:
   data:
     mongodb:
       database: employees
+      host: localhost
+      port: 27017
+      username: user
+      password: S3cret
+
