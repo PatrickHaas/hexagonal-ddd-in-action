@@ -1,4 +1,4 @@
-package de.ph.example.schedule.application;
+package de.ph.example.schedule.domain;
 
 import de.ph.example.employees.domain.EmployeeId;
 

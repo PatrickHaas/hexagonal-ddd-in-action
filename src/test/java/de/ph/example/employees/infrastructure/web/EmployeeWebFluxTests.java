@@ -1,6 +1,6 @@
 package de.ph.example.employees.infrastructure.web;
 
-import de.ph.example.employees.application.HireEmployee;
+import de.ph.example.employees.domain.HireEmployee;
 import de.ph.example.employees.domain.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

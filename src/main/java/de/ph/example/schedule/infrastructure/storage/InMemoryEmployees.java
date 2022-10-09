@@ -1,7 +1,7 @@
 package de.ph.example.schedule.infrastructure.storage;
 
 import de.ph.example.employees.domain.EmployeeId;
-import de.ph.example.schedule.application.Employees;
+import de.ph.example.schedule.domain.Employees;
 import de.ph.example.schedule.domain.VacationRequests;
 
 class InMemoryEmployees implements Employees {

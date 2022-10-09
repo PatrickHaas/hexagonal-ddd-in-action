@@ -1,7 +1,7 @@
 package de.ph.example.employees.infrastructure;
 
-import de.ph.example.employees.application.FireEmployee;
-import de.ph.example.employees.application.HireEmployee;
+import de.ph.example.employees.domain.FireEmployee;
+import de.ph.example.employees.domain.HireEmployee;
 import de.ph.example.employees.domain.Employees;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

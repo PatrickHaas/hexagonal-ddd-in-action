@@ -1,6 +1,6 @@
 package de.ph.example.schedule.infrastructure.storage;
 
-import de.ph.example.schedule.application.Holidays;
+import de.ph.example.schedule.domain.Holidays;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,10 +1,6 @@
-package de.ph.example.schedule.application;
+package de.ph.example.schedule.domain;
 
 import de.ph.example.employees.domain.EmployeeId;
-import de.ph.example.schedule.domain.InvalidVacationRequestException;
-import de.ph.example.schedule.domain.VacationRequest;
-import de.ph.example.schedule.domain.VacationRequests;
-import de.ph.example.schedule.domain.VacationSpan;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;

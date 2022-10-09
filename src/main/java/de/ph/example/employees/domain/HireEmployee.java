@@ -1,4 +1,4 @@
-package de.ph.example.employees.application;
+package de.ph.example.employees.domain;
 
 import de.ph.example.employees.domain.*;
 import org.jmolecules.ddd.annotation.Service;

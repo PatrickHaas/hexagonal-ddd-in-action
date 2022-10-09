@@ -1,7 +1,7 @@
 package de.ph.example.employees.infrastructure.web;
 
-import de.ph.example.employees.application.FireEmployee;
-import de.ph.example.employees.application.HireEmployee;
+import de.ph.example.employees.domain.FireEmployee;
+import de.ph.example.employees.domain.HireEmployee;
 import de.ph.example.employees.domain.Birthdate;
 import de.ph.example.employees.domain.EmployeeId;
 import de.ph.example.employees.domain.FirstName;
