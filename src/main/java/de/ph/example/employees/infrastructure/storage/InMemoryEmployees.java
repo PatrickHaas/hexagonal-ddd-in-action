@@ -3,14 +3,12 @@ package de.ph.example.employees.infrastructure.storage;
 import de.ph.example.employees.domain.Employee;
 import de.ph.example.employees.domain.EmployeeId;
 import de.ph.example.employees.domain.Employees;
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@Component
 public class InMemoryEmployees implements Employees {
 
     private final Map<EmployeeId, Employee> employees = new HashMap<>();
