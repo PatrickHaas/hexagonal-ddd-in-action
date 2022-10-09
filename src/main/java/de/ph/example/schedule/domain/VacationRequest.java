@@ -1,30 +1,40 @@
 package de.ph.example.schedule.domain;
 
 import de.ph.example.employees.domain.EmployeeId;
+import lombok.Getter;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class VacationRequest {
+    @Getter
     private final VacationRequestId id;
+    @Getter
     private final EmployeeId employeeId;
+    @Getter
     private final VacationSpan span;
-    private List<LocalDate> vacationDays;
+    private List<VacationDay> vacationDays;
+    @Getter
     private VacationRequestStatus status;
 
     public VacationRequest(VacationRequestId id, EmployeeId employeeId, VacationSpan vacationSpan) {
         this(id, employeeId, vacationSpan, null, VacationRequestStatus.CREATED);
     }
 
-    public VacationRequest(VacationRequestId id, EmployeeId employeeId, VacationSpan vacationSpan, List<LocalDate> vacationDays, VacationRequestStatus status) {
+    public VacationRequest(VacationRequestId id, EmployeeId employeeId, VacationSpan vacationSpan, List<VacationDay> vacationDays, VacationRequestStatus status) {
         this.id = id;
         this.employeeId = employeeId;
         this.span = vacationSpan;
         this.vacationDays = vacationDays;
         this.status = status;
+    }
+
+    public boolean matchesYear(int year) {
+        return span.matchesYear(year);
     }
 
     public void calculateVacationDays(List<LocalDate> holidays) {
@@ -36,7 +46,7 @@ public class VacationRequest {
                     || holidays.contains(possibleVacationDay)) {
                 continue;
             }
-            vacationDays.add(possibleVacationDay);
+            vacationDays.add(new VacationDay(possibleVacationDay));
         }
     }
 
@@ -56,23 +66,7 @@ public class VacationRequest {
         }
     }
 
-    public VacationRequestId getId() {
-        return id;
-    }
-
-    public EmployeeId getEmployeeId() {
-        return employeeId;
-    }
-
-    public List<LocalDate> getVacationDays() {
-        return vacationDays;
-    }
-
-    public VacationSpan getSpan() {
-        return span;
-    }
-
-    public VacationRequestStatus getStatus() {
-        return status;
+    public List<VacationDay> getVacationDays() {
+        return vacationDays == null ? Collections.emptyList() : Collections.unmodifiableList(vacationDays);
     }
 }

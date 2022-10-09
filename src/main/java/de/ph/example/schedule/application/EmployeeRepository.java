@@ -1,8 +1,8 @@
-package de.ph.example.schedule.domain;
+package de.ph.example.schedule.application;
 
 import de.ph.example.employees.domain.EmployeeId;
 
-public interface Employees {
+public interface EmployeeRepository {
 
     int calculateLeftOverVacationDays(EmployeeId employeeId, int year);
 

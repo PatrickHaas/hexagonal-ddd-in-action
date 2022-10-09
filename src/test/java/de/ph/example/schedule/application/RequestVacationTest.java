@@ -7,13 +7,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import reactor.core.publisher.Mono;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -22,11 +22,13 @@ import static org.mockito.Mockito.when;
 class RequestVacationTest {
 
     @Mock
-    private Employees employees;
+    private CalculateRemainingLeave calculateRemainingLeave;
     @Mock
-    private Holidays holidays;
+    private VacationRequestRepository vacationRequestRepository;
     @Mock
-    private VacationRequests vacationRequests;
+    private HolidayRepository holidayRepository;
+    @Spy
+    private VacationRequestFactory vacationRequestFactory;
     @InjectMocks
     private RequestVacation requestVacation;
 
@@ -37,47 +39,38 @@ class RequestVacationTest {
         LocalDate lastSundayOfATwoWeekVacationSpan = nextWeeksMonday.plusDays(13);
 
         EmployeeId employeeId = EmployeeId.random();
+        VacationSpan vacationSpan = new VacationSpan(nextWeeksMonday, lastSundayOfATwoWeekVacationSpan);
 
-        when(employees.calculateLeftOverVacationDays(employeeId, nextWeeksMonday.getYear()))
-                .thenReturn(30);
-        if (lastSundayOfATwoWeekVacationSpan.getYear() != nextWeeksMonday.getYear()) {
-            when(employees.calculateLeftOverVacationDays(employeeId, lastSundayOfATwoWeekVacationSpan.getYear()))
-                    .thenReturn(30);
-        }
-
-        when(holidays.findByYear(nextWeeksMonday.getYear()))
-                .thenReturn(List.of(nextWeeksMonday));
-        if (lastSundayOfATwoWeekVacationSpan.getYear() != nextWeeksMonday.getYear()) {
-            when(holidays.findByYear(lastSundayOfATwoWeekVacationSpan.getYear()))
-                    .thenReturn(Collections.emptyList());
-        }
-
-        when(vacationRequests.save(Mockito.any()))
+        int[] years = Stream.of(nextWeeksMonday.getYear(), lastSundayOfATwoWeekVacationSpan.getYear()).mapToInt(Integer::intValue).distinct().toArray();
+        RemainingLeave remainingLeave = new RemainingLeave(employeeId, 30);
+        List<LocalDate> holidays = List.of(nextWeeksMonday);
+        when(calculateRemainingLeave.with(employeeId, years)).thenReturn(remainingLeave);
+        when(holidayRepository.findByYears(years)).thenReturn(holidays);
+        when(vacationRequestRepository.save(Mockito.any()))
                 .then(invocation -> {
                     VacationRequest givenVacationRequest = invocation.getArgument(0, VacationRequest.class);
-                    return Mono.just(new VacationRequest(
+                    return new VacationRequest(
                             VacationRequestId.random(),
                             givenVacationRequest.getEmployeeId(),
                             givenVacationRequest.getSpan(),
                             givenVacationRequest.getVacationDays(),
-                            VacationRequestStatus.CREATED));
+                            VacationRequestStatus.CREATED);
                 });
 
-        VacationSpan vacationSpan = new VacationSpan(nextWeeksMonday, lastSundayOfATwoWeekVacationSpan);
-        VacationRequest vacationRequest = requestVacation.with(employeeId, vacationSpan).block();
+        VacationRequest vacationRequest = requestVacation.with(employeeId, vacationSpan);
         assertThat(vacationRequest.getId()).isNotNull();
         assertThat(vacationRequest.getEmployeeId()).isEqualTo(employeeId);
         assertThat(vacationRequest.getSpan()).isEqualTo(vacationSpan);
         assertThat(vacationRequest.getVacationDays()).containsExactlyInAnyOrder(
-                nextWeeksMonday.plusDays(1),
-                nextWeeksMonday.plusDays(2),
-                nextWeeksMonday.plusDays(3),
-                nextWeeksMonday.plusDays(4),
-                nextWeeksMonday.plusDays(7),
-                nextWeeksMonday.plusDays(8),
-                nextWeeksMonday.plusDays(9),
-                nextWeeksMonday.plusDays(10),
-                nextWeeksMonday.plusDays(11)
+                new VacationDay(nextWeeksMonday.plusDays(1)),
+                new VacationDay(nextWeeksMonday.plusDays(2)),
+                new VacationDay(nextWeeksMonday.plusDays(3)),
+                new VacationDay(nextWeeksMonday.plusDays(4)),
+                new VacationDay(nextWeeksMonday.plusDays(7)),
+                new VacationDay(nextWeeksMonday.plusDays(8)),
+                new VacationDay(nextWeeksMonday.plusDays(9)),
+                new VacationDay(nextWeeksMonday.plusDays(10)),
+                new VacationDay(nextWeeksMonday.plusDays(11))
         );
     }
 

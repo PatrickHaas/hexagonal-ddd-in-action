@@ -10,4 +10,8 @@ public record VacationSpan(LocalDate start, LocalDate end) {
             throw new InvalidVacationSpanException(start, end, "start after end");
         }
     }
+
+    public boolean matchesYear(int year) {
+        return start.getYear() == year || end.getYear() == year;
+    }
 }

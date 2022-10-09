@@ -5,7 +5,7 @@ import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.library.Architectures;
 import org.junit.jupiter.api.Test;
 
-public class EmployeesArchitectureTests {
+public class EmployeeRepositoryArchitectureTests {
 
     private final JavaClasses classes = new ClassFileImporter().importPackages(
             "de.ph.example.employees");
