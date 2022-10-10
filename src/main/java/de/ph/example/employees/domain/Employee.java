@@ -1,5 +1,6 @@
 package de.ph.example.employees.domain;
 
+import lombok.Getter;
 import org.jmolecules.ddd.annotation.AggregateRoot;
 
 import java.time.LocalDate;
@@ -7,11 +8,17 @@ import java.time.LocalDate;
 @AggregateRoot
 public class Employee {
 
+    @Getter
     private final EmployeeId id;
+    @Getter
     private final FirstName firstName;
+    @Getter
     private final LastName lastName;
+    @Getter
     private final Birthdate birthdate;
+    @Getter
     private HireDate hireDate;
+    @Getter
     private FireDate fireDate;
 
     public Employee(EmployeeId id, FirstName firstName, LastName lastName, Birthdate birthdate) {
@@ -30,28 +37,8 @@ public class Employee {
         this.fireDate = fireDate;
     }
 
-    public FirstName getFirstName() {
-        return firstName;
-    }
-
-    public LastName getLastName() {
-        return lastName;
-    }
-
-    public Birthdate getBirthdate() {
-        return birthdate;
-    }
-
-    public EmployeeId getId() {
-        return id;
-    }
-
     public void hire() {
         this.hireDate = new HireDate(LocalDate.now());
-    }
-
-    public HireDate getHireDate() {
-        return hireDate;
     }
 
     public void fire() {
@@ -59,9 +46,5 @@ public class Employee {
             throw new IllegalFiringException(this);
         }
         this.fireDate = new FireDate(LocalDate.now());
-    }
-
-    public FireDate getFireDate() {
-        return fireDate;
     }
 }

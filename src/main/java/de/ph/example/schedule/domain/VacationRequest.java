@@ -17,9 +17,9 @@ public class VacationRequest {
     private final EmployeeId employeeId;
     @Getter
     private final VacationSpan span;
-    private List<VacationDay> vacationDays;
     @Getter
     private VacationRequestStatus status;
+    private List<VacationDay> vacationDays;
 
     public VacationRequest(VacationRequestId id, EmployeeId employeeId, VacationSpan vacationSpan) {
         this(id, employeeId, vacationSpan, null, VacationRequestStatus.CREATED);
