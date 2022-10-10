@@ -16,32 +16,32 @@ public class VacationRequest {
     @Getter
     private final EmployeeId employeeId;
     @Getter
-    private final VacationSpan span;
+    private final VacationPeriod period;
     @Getter
     private VacationRequestStatus status;
     private List<VacationDay> vacationDays;
 
-    public VacationRequest(VacationRequestId id, EmployeeId employeeId, VacationSpan vacationSpan) {
-        this(id, employeeId, vacationSpan, null, VacationRequestStatus.CREATED);
+    public VacationRequest(VacationRequestId id, EmployeeId employeeId, VacationPeriod vacationPeriod) {
+        this(id, employeeId, vacationPeriod, null, VacationRequestStatus.CREATED);
     }
 
-    public VacationRequest(VacationRequestId id, EmployeeId employeeId, VacationSpan vacationSpan, List<VacationDay> vacationDays, VacationRequestStatus status) {
+    public VacationRequest(VacationRequestId id, EmployeeId employeeId, VacationPeriod vacationPeriod, List<VacationDay> vacationDays, VacationRequestStatus status) {
         this.id = id;
         this.employeeId = employeeId;
-        this.span = vacationSpan;
+        this.period = vacationPeriod;
         this.vacationDays = vacationDays;
         this.status = status;
     }
 
     public boolean matchesYear(int year) {
-        return span.matchesYear(year);
+        return period.matchesYear(year);
     }
 
     public void calculateVacationDays(List<LocalDate> holidays) {
         vacationDays = new ArrayList<>();
-        long daysBetween = ChronoUnit.DAYS.between(span.start(), span.end());
+        long daysBetween = ChronoUnit.DAYS.between(period.start(), period.end());
         for (int index = 0; index <= daysBetween; index++) {
-            LocalDate possibleVacationDay = span.start().plusDays(index);
+            LocalDate possibleVacationDay = period.start().plusDays(index);
             if (List.of(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY).contains(possibleVacationDay.getDayOfWeek())
                     || holidays.contains(possibleVacationDay)) {
                 continue;

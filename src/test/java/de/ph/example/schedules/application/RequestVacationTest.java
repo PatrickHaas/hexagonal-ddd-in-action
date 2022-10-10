@@ -39,7 +39,7 @@ class RequestVacationTest {
         LocalDate lastSundayOfATwoWeekVacationSpan = nextWeeksMonday.plusDays(13);
 
         EmployeeId employeeId = EmployeeId.random();
-        VacationSpan vacationSpan = new VacationSpan(nextWeeksMonday, lastSundayOfATwoWeekVacationSpan);
+        VacationPeriod vacationPeriod = new VacationPeriod(nextWeeksMonday, lastSundayOfATwoWeekVacationSpan);
 
         int[] years = Stream.of(nextWeeksMonday.getYear(), lastSundayOfATwoWeekVacationSpan.getYear()).mapToInt(Integer::intValue).distinct().toArray();
         RemainingLeave remainingLeave = new RemainingLeave(employeeId, 30);
@@ -52,15 +52,15 @@ class RequestVacationTest {
                     return new VacationRequest(
                             VacationRequestId.random(),
                             givenVacationRequest.getEmployeeId(),
-                            givenVacationRequest.getSpan(),
+                            givenVacationRequest.getPeriod(),
                             givenVacationRequest.getVacationDays(),
                             VacationRequestStatus.CREATED);
                 });
 
-        VacationRequest vacationRequest = requestVacation.with(employeeId, vacationSpan);
+        VacationRequest vacationRequest = requestVacation.with(employeeId, vacationPeriod);
         assertThat(vacationRequest.getId()).isNotNull();
         assertThat(vacationRequest.getEmployeeId()).isEqualTo(employeeId);
-        assertThat(vacationRequest.getSpan()).isEqualTo(vacationSpan);
+        assertThat(vacationRequest.getPeriod()).isEqualTo(vacationPeriod);
         assertThat(vacationRequest.getVacationDays()).containsExactlyInAnyOrder(
                 new VacationDay(nextWeeksMonday.plusDays(1)),
                 new VacationDay(nextWeeksMonday.plusDays(3)),

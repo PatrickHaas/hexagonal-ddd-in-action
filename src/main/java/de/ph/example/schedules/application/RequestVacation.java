@@ -4,7 +4,7 @@ import de.ph.example.employees.domain.EmployeeId;
 import de.ph.example.schedules.domain.RemainingLeave;
 import de.ph.example.schedules.domain.VacationRequest;
 import de.ph.example.schedules.domain.VacationRequestFactory;
-import de.ph.example.schedules.domain.VacationSpan;
+import de.ph.example.schedules.domain.VacationPeriod;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,7 +24,7 @@ public class RequestVacation {
         this.holidayRepository = holidayRepository;
     }
 
-    public VacationRequest with(EmployeeId employeeId, VacationSpan span) {
+    public VacationRequest with(EmployeeId employeeId, VacationPeriod span) {
         int[] years = Stream.of(span.start().getYear(), span.end().getYear()).mapToInt(Integer::intValue).distinct().toArray();
         List<LocalDate> holidays = holidayRepository.findByYears(years);
         RemainingLeave remainingLeave = calculateRemainingLeave.with(employeeId, years);

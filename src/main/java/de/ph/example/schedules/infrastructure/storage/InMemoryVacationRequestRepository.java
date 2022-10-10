@@ -14,7 +14,7 @@ class InMemoryVacationRequestRepository implements VacationRequestRepository {
     @Override
     public VacationRequest save(VacationRequest vacationRequest) {
         VacationRequestId vacationRequestId = Optional.ofNullable(vacationRequest.getId()).orElseGet(VacationRequestId::random);
-        VacationRequest savedVacationRequest = new VacationRequest(vacationRequestId, vacationRequest.getEmployeeId(), vacationRequest.getSpan(), vacationRequest.getVacationDays(), vacationRequest.getStatus());
+        VacationRequest savedVacationRequest = new VacationRequest(vacationRequestId, vacationRequest.getEmployeeId(), vacationRequest.getPeriod(), vacationRequest.getVacationDays(), vacationRequest.getStatus());
         vacationRequests.put(savedVacationRequest.getId(), savedVacationRequest);
         return savedVacationRequest;
     }

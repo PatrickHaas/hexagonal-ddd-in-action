@@ -2,8 +2,8 @@ package de.ph.example.schedules.domain;
 
 import java.time.LocalDate;
 
-public record VacationSpan(LocalDate start, LocalDate end) {
-    public VacationSpan {
+public record VacationPeriod(LocalDate start, LocalDate end) {
+    public VacationPeriod {
         if (start == null || end == null) {
             throw new InvalidVacationSpanException(start, end, "either start or end is null");
         } else if (start.isAfter(end)) {
