@@ -6,8 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {
-        "de.ph.example.employees",
-        "de.ph.example.schedules"
+        "de.ph.example.employees.infrastructure",
+        "de.ph.example.schedules.infrastructure"
 })
 public class ExampleApplication {
 
