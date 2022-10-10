@@ -43,7 +43,7 @@ class RequestVacationTest {
 
         int[] years = Stream.of(nextWeeksMonday.getYear(), lastSundayOfATwoWeekVacationSpan.getYear()).mapToInt(Integer::intValue).distinct().toArray();
         RemainingLeave remainingLeave = new RemainingLeave(employeeId, 30);
-        List<LocalDate> holidays = List.of(nextWeeksMonday);
+        List<LocalDate> holidays = List.of(nextWeeksMonday, nextWeeksMonday.plusDays(2));
         when(calculateRemainingLeave.with(employeeId, years)).thenReturn(remainingLeave);
         when(holidayRepository.findByYears(years)).thenReturn(holidays);
         when(vacationRequestRepository.save(Mockito.any()))
@@ -63,7 +63,6 @@ class RequestVacationTest {
         assertThat(vacationRequest.getSpan()).isEqualTo(vacationSpan);
         assertThat(vacationRequest.getVacationDays()).containsExactlyInAnyOrder(
                 new VacationDay(nextWeeksMonday.plusDays(1)),
-                new VacationDay(nextWeeksMonday.plusDays(2)),
                 new VacationDay(nextWeeksMonday.plusDays(3)),
                 new VacationDay(nextWeeksMonday.plusDays(4)),
                 new VacationDay(nextWeeksMonday.plusDays(7)),
