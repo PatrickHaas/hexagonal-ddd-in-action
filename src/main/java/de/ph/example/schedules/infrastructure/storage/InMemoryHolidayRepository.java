@@ -1,6 +1,6 @@
-package de.ph.example.schedule.infrastructure.storage;
+package de.ph.example.schedules.infrastructure.storage;
 
-import de.ph.example.schedule.application.HolidayRepository;
+import de.ph.example.schedules.application.HolidayRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

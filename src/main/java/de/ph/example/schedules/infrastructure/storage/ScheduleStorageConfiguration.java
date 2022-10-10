@@ -1,8 +1,8 @@
-package de.ph.example.schedule.infrastructure.storage;
+package de.ph.example.schedules.infrastructure.storage;
 
-import de.ph.example.schedule.application.EmployeeRepository;
-import de.ph.example.schedule.application.HolidayRepository;
-import de.ph.example.schedule.application.VacationRequestRepository;
+import de.ph.example.schedules.application.EmployeeRepository;
+import de.ph.example.schedules.application.HolidayRepository;
+import de.ph.example.schedules.application.VacationRequestRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

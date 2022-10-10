@@ -1,10 +1,10 @@
-package de.ph.example.schedule.infrastructure;
+package de.ph.example.schedules.infrastructure;
 
-import de.ph.example.schedule.application.CalculateRemainingLeave;
-import de.ph.example.schedule.application.HolidayRepository;
-import de.ph.example.schedule.application.RequestVacation;
-import de.ph.example.schedule.application.VacationRequestRepository;
-import de.ph.example.schedule.domain.VacationRequestFactory;
+import de.ph.example.schedules.application.CalculateRemainingLeave;
+import de.ph.example.schedules.application.HolidayRepository;
+import de.ph.example.schedules.application.RequestVacation;
+import de.ph.example.schedules.application.VacationRequestRepository;
+import de.ph.example.schedules.domain.VacationRequestFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

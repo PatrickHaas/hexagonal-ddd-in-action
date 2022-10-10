@@ -1,10 +1,10 @@
-package de.ph.example.schedule.application;
+package de.ph.example.schedules.application;
 
 import de.ph.example.employees.domain.EmployeeId;
-import de.ph.example.schedule.domain.RemainingLeave;
-import de.ph.example.schedule.domain.VacationRequest;
-import de.ph.example.schedule.domain.VacationRequestFactory;
-import de.ph.example.schedule.domain.VacationSpan;
+import de.ph.example.schedules.domain.RemainingLeave;
+import de.ph.example.schedules.domain.VacationRequest;
+import de.ph.example.schedules.domain.VacationRequestFactory;
+import de.ph.example.schedules.domain.VacationSpan;
 
 import java.time.LocalDate;
 import java.util.List;

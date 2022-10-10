@@ -1,4 +1,4 @@
-package de.ph.example.schedule.domain;
+package de.ph.example.schedules.domain;
 
 import org.jmolecules.ddd.annotation.ValueObject;
 

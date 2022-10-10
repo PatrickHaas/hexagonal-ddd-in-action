@@ -1,4 +1,4 @@
-package de.ph.example.schedule.domain;
+package de.ph.example.schedules.domain;
 
 import de.ph.example.employees.domain.EmployeeId;
 import org.jmolecules.ddd.annotation.Factory;

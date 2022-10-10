@@ -1,4 +1,4 @@
-package de.ph.example.schedule.application;
+package de.ph.example.schedules.application;
 
 import java.time.LocalDate;
 import java.util.List;

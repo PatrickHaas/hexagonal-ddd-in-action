@@ -1,8 +1,8 @@
-package de.ph.example.schedule.infrastructure.storage;
+package de.ph.example.schedules.infrastructure.storage;
 
 import de.ph.example.employees.domain.EmployeeId;
-import de.ph.example.schedule.application.EmployeeRepository;
-import de.ph.example.schedule.application.VacationRequestRepository;
+import de.ph.example.schedules.application.EmployeeRepository;
+import de.ph.example.schedules.application.VacationRequestRepository;
 
 class InMemoryEmployeeRepository implements EmployeeRepository {
 

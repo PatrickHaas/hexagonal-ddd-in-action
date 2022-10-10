@@ -1,4 +1,4 @@
-package de.ph.example.schedule.domain;
+package de.ph.example.schedules.domain;
 
 public class InvalidVacationRequestException extends RuntimeException {
 

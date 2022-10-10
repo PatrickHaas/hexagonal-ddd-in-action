@@ -1,9 +1,9 @@
-package de.ph.example.schedule.infrastructure.storage;
+package de.ph.example.schedules.infrastructure.storage;
 
 import de.ph.example.employees.domain.EmployeeId;
-import de.ph.example.schedule.application.VacationRequestRepository;
-import de.ph.example.schedule.domain.VacationRequest;
-import de.ph.example.schedule.domain.VacationRequestId;
+import de.ph.example.schedules.application.VacationRequestRepository;
+import de.ph.example.schedules.domain.VacationRequest;
+import de.ph.example.schedules.domain.VacationRequestId;
 
 import java.util.*;
 

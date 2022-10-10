@@ -1,7 +1,7 @@
-package de.ph.example.schedule.application;
+package de.ph.example.schedules.application;
 
 import de.ph.example.employees.domain.EmployeeId;
-import de.ph.example.schedule.domain.*;
+import de.ph.example.schedules.domain.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,7 +28,7 @@ class RequestVacationTest {
     @Mock
     private HolidayRepository holidayRepository;
     @Spy
-    private VacationRequestFactory vacationRequestFactory;
+    private VacationRequestFactory vacationRequestFactory; // Allows us to auto-inject the real implementation
     @InjectMocks
     private RequestVacation requestVacation;
 

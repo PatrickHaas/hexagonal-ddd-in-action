@@ -1,7 +1,7 @@
-package de.ph.example.schedule.application;
+package de.ph.example.schedules.application;
 
 import de.ph.example.employees.domain.EmployeeId;
-import de.ph.example.schedule.domain.RemainingLeave;
+import de.ph.example.schedules.domain.RemainingLeave;
 
 public class CalculateRemainingLeave {
 
