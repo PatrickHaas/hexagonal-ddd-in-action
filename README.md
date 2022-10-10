@@ -2,9 +2,11 @@
 
 (work in progress)
 
-A little sample project to illustrate how ddd building blocks can be used to encapsulate your domain logic and parallel satisfy the rules of a hexagonal architecture.
+A little sample project to illustrate how ddd building blocks can be used to encapsulate your domain logic and parallel
+satisfy the rules of a hexagonal architecture.
 I tried reaching this goal by putting all code depending on a framework like spring in the infrastructure packages.
 
-## employees 
+# bounded contexts
 
-## schedule
+Each bounded context gets its own package, but it could also be a completely different application / deployment unit - that's the point of a bounded context really.
+For simplicity we're doing it in packages and ensure the architectural rules via [ArchUnit](https://www.archunit.org/).
