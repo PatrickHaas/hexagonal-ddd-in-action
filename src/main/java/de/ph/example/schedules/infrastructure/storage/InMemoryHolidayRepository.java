@@ -6,7 +6,7 @@ import de.ph.example.schedules.domain.DatePeriod;
 import java.time.LocalDate;
 import java.util.List;
 
-class InMemoryHolidays implements Holidays {
+class InMemoryHolidayRepository implements Holidays {
     public List<LocalDate> findByYear(int year) {
         return List.of(
                 LocalDate.of(year, 1, 1),

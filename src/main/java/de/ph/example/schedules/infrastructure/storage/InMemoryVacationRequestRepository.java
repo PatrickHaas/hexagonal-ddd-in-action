@@ -7,7 +7,7 @@ import de.ph.example.schedules.domain.VacationRequestId;
 
 import java.util.*;
 
-class InMemoryVacationRequests implements VacationRequests {
+class InMemoryVacationRequestRepository implements VacationRequests {
 
     private final Map<VacationRequestId, VacationRequest> vacationRequests = new HashMap<>();
 

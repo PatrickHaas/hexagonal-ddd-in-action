@@ -1,4 +1,4 @@
-package de.ph.example.schedules.application;
+package de.ph.example.schedules.domain;
 
 import de.ph.example.schedules.domain.ProjectAssignmentId;
 

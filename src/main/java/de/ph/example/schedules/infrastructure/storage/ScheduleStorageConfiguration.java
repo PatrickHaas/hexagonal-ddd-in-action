@@ -1,8 +1,6 @@
 package de.ph.example.schedules.infrastructure.storage;
 
-import de.ph.example.schedules.application.Employees;
-import de.ph.example.schedules.application.Holidays;
-import de.ph.example.schedules.application.VacationRequests;
+import de.ph.example.schedules.application.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,16 +8,26 @@ import org.springframework.context.annotation.Configuration;
 class ScheduleStorageConfiguration {
     @Bean
     Employees employeeRepository(VacationRequests vacationRequests) {
-        return new InMemoryEmployees(vacationRequests);
+        return new InMemoryEmployeeRepository(vacationRequests);
     }
 
     @Bean
     VacationRequests vacationRequestRepository() {
-        return new InMemoryVacationRequests();
+        return new InMemoryVacationRequestRepository();
     }
 
     @Bean
     Holidays holidayRepository() {
-        return new InMemoryHolidays();
+        return new InMemoryHolidayRepository();
+    }
+
+    @Bean
+    ProjectAssignments projectAssignmentRepository() {
+        return new InMemoryProjectAssignmentsRepository();
+    }
+
+    @Bean
+    SickNotes sickNoteRepository() {
+        return new InMemorySickNoteRepository();
     }
 }

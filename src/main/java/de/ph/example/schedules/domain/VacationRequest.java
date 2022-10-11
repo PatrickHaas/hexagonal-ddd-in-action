@@ -47,7 +47,7 @@ public class VacationRequest {
         return period.matchesYear(year);
     }
 
-    void calculateVacationDays(List<LocalDate> holidays) {
+    private void calculateVacationDays(List<LocalDate> holidays) {
         vacationDays = new ArrayList<>();
         long daysBetween = ChronoUnit.DAYS.between(period.start(), period.end());
         for (int index = 0; index <= daysBetween; index++) {

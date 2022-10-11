@@ -5,11 +5,11 @@ import de.ph.example.schedules.application.VacationRequests;
 import de.ph.example.schedules.domain.EmployeeId;
 import de.ph.example.schedules.domain.PermittedLeave;
 
-class InMemoryEmployees implements Employees {
+class InMemoryEmployeeRepository implements Employees {
 
     private final VacationRequests vacationRequests;
 
-    public InMemoryEmployees(VacationRequests vacationRequests) {
+    public InMemoryEmployeeRepository(VacationRequests vacationRequests) {
         this.vacationRequests = vacationRequests;
     }
 
