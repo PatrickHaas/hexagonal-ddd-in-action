@@ -25,8 +25,7 @@ public class RequestVacation {
     }
 
     public VacationRequest with(EmployeeId employeeId, TimePeriod period) {
-        int[] years = Stream.of(period.start().getYear(), period.end().getYear()).mapToInt(Integer::intValue).distinct().toArray();
-        List<LocalDate> holidays = holidayRepository.findByYears(years);
+        List<LocalDate> holidays = holidayRepository.findByPeriod(period);
         List<RemainingLeave> remainingLeave = calculateRemainingLeave.with(employeeId, period);
         VacationRequest vacationRequest = vacationRequestFactory.create(employeeId, period, holidays, remainingLeave);
         return vacationRequestRepository.save(vacationRequest);

@@ -17,7 +17,7 @@ public class VacationRequestFactory {
         // Validate remaining leave
         if (remainingLeaves.stream().anyMatch(remainingLeave -> remainingLeave.days() == 0)) {
             throw new InvalidVacationRequestException(InvalidVacationRequestException.InvalidVacationRequestReason.NO_MORE_VACATION_LEFT);
-        } else if (remainingLeaves.stream().anyMatch(remainingLeave -> remainingLeave.days() - vacationRequest.getVacationDays().size() < 0)) {
+        } else if (remainingLeaves.stream().anyMatch(remainingLeave -> remainingLeave.days() - vacationRequest.getVacationDaysByYear(remainingLeave.year()).size() < 0)) {
             throw new InvalidVacationRequestException(InvalidVacationRequestException.InvalidVacationRequestReason.NOT_ENOUGH_VACATION_LEFT);
         }
         return vacationRequest;

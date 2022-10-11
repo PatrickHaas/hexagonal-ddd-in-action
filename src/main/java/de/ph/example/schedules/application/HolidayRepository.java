@@ -1,9 +1,10 @@
 package de.ph.example.schedules.application;
 
+import de.ph.example.schedules.domain.TimePeriod;
+
 import java.time.LocalDate;
 import java.util.List;
 
 public interface HolidayRepository {
-    List<LocalDate> findByYears(int... years);
-
+    List<LocalDate> findByPeriod(TimePeriod period);
 }

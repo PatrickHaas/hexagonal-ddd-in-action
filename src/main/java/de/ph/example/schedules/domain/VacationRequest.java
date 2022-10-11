@@ -73,4 +73,8 @@ public class VacationRequest {
     public List<VacationDay> getVacationDays() {
         return vacationDays == null ? Collections.emptyList() : Collections.unmodifiableList(vacationDays);
     }
+
+    public List<VacationDay> getVacationDaysByYear(int year) {
+        return getVacationDays().stream().filter(vacationDay -> vacationDay.value().getYear() == year).toList();
+    }
 }
