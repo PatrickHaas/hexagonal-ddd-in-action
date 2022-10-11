@@ -10,12 +10,14 @@ import java.util.List;
 public class VacationRequestFactory {
 
     // TODO not sure if the factory should ensure rules, that can not be ensured by the entity
-    public VacationRequest create(EmployeeId employeeId, VacationPeriod span, List<LocalDate> holidays, RemainingLeave remainingLeave) {
-        VacationRequest vacationRequest = new VacationRequest(null, employeeId, span);
+    public VacationRequest create(EmployeeId employeeId, TimePeriod period, List<LocalDate> holidays, List<RemainingLeave> remainingLeaves) {
+        VacationRequest vacationRequest = new VacationRequest(null, employeeId, period);
         vacationRequest.calculateVacationDays(holidays);
-        if (remainingLeave.days() == 0) {
+
+        // Validate remaining leave
+        if (remainingLeaves.stream().anyMatch(remainingLeave -> remainingLeave.days() == 0)) {
             throw new InvalidVacationRequestException(InvalidVacationRequestException.InvalidVacationRequestReason.NO_MORE_VACATION_LEFT);
-        } else if (remainingLeave.days() - vacationRequest.getVacationDays().size() < 0) {
+        } else if (remainingLeaves.stream().anyMatch(remainingLeave -> remainingLeave.days() - vacationRequest.getVacationDays().size() < 0)) {
             throw new InvalidVacationRequestException(InvalidVacationRequestException.InvalidVacationRequestReason.NOT_ENOUGH_VACATION_LEFT);
         }
         return vacationRequest;

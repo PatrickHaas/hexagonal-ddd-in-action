@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface VacationRequestRepository {
     VacationRequest save(VacationRequest vacationRequest);
 
-    List<VacationRequest> findByEmployeeIdAndYear(EmployeeId employeeId, int... years);
-
     Optional<VacationRequest> findById(VacationRequestId id);
+
+    List<VacationRequest> findByEmployeeIdAndYear(EmployeeId employeeId, int year);
 }

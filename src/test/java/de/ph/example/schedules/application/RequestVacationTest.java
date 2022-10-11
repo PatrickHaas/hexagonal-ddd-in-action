@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -39,12 +40,15 @@ class RequestVacationTest {
         LocalDate lastSundayOfATwoWeekVacationSpan = nextWeeksMonday.plusDays(13);
 
         EmployeeId employeeId = EmployeeId.random();
-        VacationPeriod vacationPeriod = new VacationPeriod(nextWeeksMonday, lastSundayOfATwoWeekVacationSpan);
+        TimePeriod vacationPeriod = new TimePeriod(nextWeeksMonday, lastSundayOfATwoWeekVacationSpan);
 
         int[] years = Stream.of(nextWeeksMonday.getYear(), lastSundayOfATwoWeekVacationSpan.getYear()).mapToInt(Integer::intValue).distinct().toArray();
-        RemainingLeave remainingLeave = new RemainingLeave(employeeId, 30);
+        List<RemainingLeave> remainingLeaves = new ArrayList<>();
+        for (int year : years) {
+            remainingLeaves.add(new RemainingLeave(employeeId, year, 30));
+        }
         List<LocalDate> holidays = List.of(nextWeeksMonday, nextWeeksMonday.plusDays(2));
-        when(calculateRemainingLeave.with(employeeId, years)).thenReturn(remainingLeave);
+        when(calculateRemainingLeave.with(employeeId, vacationPeriod)).thenReturn(remainingLeaves);
         when(holidayRepository.findByYears(years)).thenReturn(holidays);
         when(vacationRequestRepository.save(Mockito.any()))
                 .then(invocation -> {

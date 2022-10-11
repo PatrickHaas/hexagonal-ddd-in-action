@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class VacationRequestTest {
 
@@ -16,7 +17,7 @@ class VacationRequestTest {
         VacationRequest vacationRequest = new VacationRequest(
                 null,
                 EmployeeId.random(),
-                new VacationPeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
+                new TimePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
         );
         assertThat(vacationRequest.matchesYear(1999)).isFalse();
         assertThat(vacationRequest.matchesYear(2021)).isFalse();
@@ -28,7 +29,7 @@ class VacationRequestTest {
         VacationRequest vacationRequest = new VacationRequest(
                 null,
                 EmployeeId.random(),
-                new VacationPeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
+                new TimePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
         );
         assertThat(vacationRequest.matchesYear(2022)).isTrue();
         assertThat(vacationRequest.matchesYear(2023)).isTrue();
@@ -39,7 +40,7 @@ class VacationRequestTest {
         VacationRequest vacationRequest = new VacationRequest(
                 null,
                 EmployeeId.random(),
-                new VacationPeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
+                new TimePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
         );
         vacationRequest.calculateVacationDays(List.of(
                 LocalDate.of(2022, 12, 24),
@@ -67,19 +68,18 @@ class VacationRequestTest {
     }
 
     @Test
-    void calculateVacationDays_shouldReturnAnEmptyList_whenNoPossibleVacationDaysAreInPeriod() {
+    void calculateVacationDays_shouldFail_whenNoPossibleVacationDaysAreInPeriod() {
         VacationRequest vacationRequest = new VacationRequest(
                 null,
                 EmployeeId.random(),
-                new VacationPeriod(LocalDate.of(2022, 12, 24), LocalDate.of(2022, 12, 26))
+                new TimePeriod(LocalDate.of(2022, 12, 24), LocalDate.of(2022, 12, 26))
         );
-        vacationRequest.calculateVacationDays(List.of(
+        assertThatThrownBy(() -> vacationRequest.calculateVacationDays(List.of(
                 LocalDate.of(2022, 12, 24),
                 LocalDate.of(2022, 12, 25),
                 LocalDate.of(2022, 12, 26),
                 LocalDate.of(2023, 1, 1)
-        ));
-        assertThat(vacationRequest.getVacationDays()).isEmpty();
+        ))).isInstanceOf(IllegalArgumentException.class);
     }
 
 }

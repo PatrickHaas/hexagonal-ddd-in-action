@@ -1,9 +1,6 @@
 package de.ph.example.schedules.infrastructure;
 
-import de.ph.example.schedules.application.CalculateRemainingLeave;
-import de.ph.example.schedules.application.HolidayRepository;
-import de.ph.example.schedules.application.RequestVacation;
-import de.ph.example.schedules.application.VacationRequestRepository;
+import de.ph.example.schedules.application.*;
 import de.ph.example.schedules.domain.VacationRequestFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +13,7 @@ class ScheduleConfiguration {
     }
 
     @Bean
-    CalculateRemainingLeave calculateRemainingLeave(VacationRequestRepository vacationRequestRepository) {
-        return new CalculateRemainingLeave(vacationRequestRepository);
+    CalculateRemainingLeave calculateRemainingLeave(VacationRequestRepository vacationRequestRepository, EmployeeRepository employeeRepository) {
+        return new CalculateRemainingLeave(vacationRequestRepository, employeeRepository);
     }
 }

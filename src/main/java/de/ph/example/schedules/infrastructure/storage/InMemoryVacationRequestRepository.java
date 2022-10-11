@@ -20,15 +20,16 @@ class InMemoryVacationRequestRepository implements VacationRequestRepository {
     }
 
     @Override
-    public List<VacationRequest> findByEmployeeIdAndYear(EmployeeId employeeId, int... years) {
-        return vacationRequests.values()
-                .stream().filter(vacationRequest ->
-                        !Objects.equals(vacationRequest.getEmployeeId(), employeeId) &&
-                                Arrays.stream(years).anyMatch(vacationRequest::matchesYear)).toList();
+    public List<VacationRequest> findByEmployeeIdAndYear(EmployeeId employeeId, int year) {
+        return vacationRequests.values().stream()
+                .filter(vacationRequest -> !Objects.equals(vacationRequest.getEmployeeId(), employeeId)
+                        && vacationRequest.matchesYear(year))
+                .toList();
     }
 
     @Override
     public Optional<VacationRequest> findById(VacationRequestId id) {
         return Optional.ofNullable(vacationRequests.get(id));
     }
+
 }

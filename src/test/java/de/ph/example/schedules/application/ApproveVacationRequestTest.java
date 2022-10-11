@@ -31,7 +31,7 @@ class ApproveVacationRequestTest {
         when(vacationRequestRepository.findById(vacationRequestId)).thenReturn(Optional.of(new VacationRequest(
                 vacationRequestId,
                 EmployeeId.random(),
-                new VacationPeriod(LocalDate.now(), LocalDate.now().plusDays(3)),
+                new TimePeriod(LocalDate.now(), LocalDate.now().plusDays(3)),
                 List.of(new VacationDay(LocalDate.now().plusDays(1))),
                 VacationRequestStatus.CREATED)));
         when(vacationRequestRepository.save(Mockito.any()))

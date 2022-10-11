@@ -3,6 +3,7 @@ package de.ph.example.schedules.infrastructure.storage;
 import de.ph.example.employees.domain.EmployeeId;
 import de.ph.example.schedules.application.EmployeeRepository;
 import de.ph.example.schedules.application.VacationRequestRepository;
+import de.ph.example.schedules.domain.PermittedLeave;
 
 class InMemoryEmployeeRepository implements EmployeeRepository {
 
@@ -13,8 +14,7 @@ class InMemoryEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
-    public int calculateLeftOverVacationDays(EmployeeId employeeId, int year) {
-        // TODO calculate left over vacation days
-        return 30;
+    public PermittedLeave calculatePermittedLeave(EmployeeId employeeId) {
+        return new PermittedLeave(employeeId, 30);
     }
 }
