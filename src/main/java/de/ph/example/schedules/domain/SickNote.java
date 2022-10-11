@@ -1,6 +1,5 @@
 package de.ph.example.schedules.domain;
 
-import de.ph.example.employees.domain.EmployeeId;
 import lombok.Getter;
 import org.jmolecules.ddd.annotation.AggregateRoot;
 import org.jmolecules.ddd.annotation.Identity;

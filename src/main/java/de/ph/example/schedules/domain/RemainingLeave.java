@@ -1,6 +1,5 @@
 package de.ph.example.schedules.domain;
 
-import de.ph.example.employees.domain.EmployeeId;
 import org.jmolecules.ddd.annotation.ValueObject;
 
 @ValueObject

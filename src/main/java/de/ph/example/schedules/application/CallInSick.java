@@ -1,6 +1,6 @@
 package de.ph.example.schedules.application;
 
-import de.ph.example.employees.domain.EmployeeId;
+import de.ph.example.schedules.domain.EmployeeId;
 import de.ph.example.schedules.domain.SickNote;
 import lombok.RequiredArgsConstructor;
 import org.jmolecules.ddd.annotation.Service;

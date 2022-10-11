@@ -1,6 +1,5 @@
 package de.ph.example.schedules.application;
 
-import de.ph.example.employees.domain.EmployeeId;
 import de.ph.example.schedules.domain.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

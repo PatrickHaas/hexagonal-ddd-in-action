@@ -1,7 +1,7 @@
 package de.ph.example.schedules.infrastructure.storage;
 
-import de.ph.example.employees.domain.EmployeeId;
 import de.ph.example.schedules.application.VacationRequests;
+import de.ph.example.schedules.domain.EmployeeId;
 import de.ph.example.schedules.domain.VacationRequest;
 import de.ph.example.schedules.domain.VacationRequestId;
 

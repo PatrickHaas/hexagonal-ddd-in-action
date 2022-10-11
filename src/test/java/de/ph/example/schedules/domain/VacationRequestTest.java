@@ -1,7 +1,6 @@
 package de.ph.example.schedules.domain;
 
 
-import de.ph.example.employees.domain.EmployeeId;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
 package de.ph.example.schedules.application;
 
-import de.ph.example.employees.domain.EmployeeId;
+import de.ph.example.schedules.domain.EmployeeId;
 import de.ph.example.schedules.domain.SickNote;
 import de.ph.example.schedules.domain.SickNoteId;
 import org.junit.jupiter.api.Test;
