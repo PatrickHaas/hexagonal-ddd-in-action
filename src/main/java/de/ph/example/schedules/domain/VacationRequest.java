@@ -19,16 +19,16 @@ public class VacationRequest {
     @Getter
     private final EmployeeId employeeId;
     @Getter
-    private final TimePeriod period;
+    private final DatePeriod period;
     @Getter
     private VacationRequestStatus status;
     private List<VacationDay> vacationDays;
 
-    public VacationRequest(VacationRequestId id, EmployeeId employeeId, TimePeriod vacationPeriod) {
+    public VacationRequest(VacationRequestId id, EmployeeId employeeId, DatePeriod vacationPeriod) {
         this(id, employeeId, vacationPeriod, null, VacationRequestStatus.CREATED);
     }
 
-    public VacationRequest(VacationRequestId id, EmployeeId employeeId, TimePeriod vacationPeriod, List<VacationDay> vacationDays, VacationRequestStatus status) {
+    public VacationRequest(VacationRequestId id, EmployeeId employeeId, DatePeriod vacationPeriod, List<VacationDay> vacationDays, VacationRequestStatus status) {
         this.id = id;
         this.employeeId = employeeId;
         this.period = vacationPeriod;

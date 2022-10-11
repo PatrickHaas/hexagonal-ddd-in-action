@@ -21,7 +21,7 @@ public class RequestVacation {
         this.holidays = holidays;
     }
 
-    public VacationRequest with(EmployeeId employeeId, TimePeriod period) {
+    public VacationRequest with(EmployeeId employeeId, DatePeriod period) {
         List<LocalDate> holidays = this.holidays.findByPeriod(period);
         List<RemainingLeave> remainingLeave = calculateRemainingLeave.with(employeeId, period);
         VacationRequest vacationRequest = vacationRequestFactory.create(employeeId, period, holidays, remainingLeave);

@@ -16,7 +16,7 @@ class VacationRequestTest {
         VacationRequest vacationRequest = new VacationRequest(
                 null,
                 EmployeeId.random(),
-                new TimePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
+                new DatePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
         );
         assertThat(vacationRequest.matchesYear(1999)).isFalse();
         assertThat(vacationRequest.matchesYear(2021)).isFalse();
@@ -28,7 +28,7 @@ class VacationRequestTest {
         VacationRequest vacationRequest = new VacationRequest(
                 null,
                 EmployeeId.random(),
-                new TimePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
+                new DatePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
         );
         assertThat(vacationRequest.matchesYear(2022)).isTrue();
         assertThat(vacationRequest.matchesYear(2023)).isTrue();
@@ -39,7 +39,7 @@ class VacationRequestTest {
         VacationRequest vacationRequest = new VacationRequest(
                 null,
                 EmployeeId.random(),
-                new TimePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
+                new DatePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
         );
         vacationRequest.calculateVacationDays(List.of(
                 LocalDate.of(2022, 12, 24),
@@ -71,7 +71,7 @@ class VacationRequestTest {
         VacationRequest vacationRequest = new VacationRequest(
                 null,
                 EmployeeId.random(),
-                new TimePeriod(LocalDate.of(2022, 12, 24), LocalDate.of(2022, 12, 26))
+                new DatePeriod(LocalDate.of(2022, 12, 24), LocalDate.of(2022, 12, 26))
         );
         assertThatThrownBy(() -> vacationRequest.calculateVacationDays(List.of(
                 LocalDate.of(2022, 12, 24),

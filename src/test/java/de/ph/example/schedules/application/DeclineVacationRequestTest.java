@@ -31,7 +31,7 @@ class DeclineVacationRequestTest {
         when(vacationRequests.findById(vacationRequestId)).thenReturn(Optional.of(new VacationRequest(
                 vacationRequestId,
                 EmployeeId.random(),
-                new TimePeriod(LocalDate.now(), LocalDate.now().plusDays(3)),
+                new DatePeriod(LocalDate.now(), LocalDate.now().plusDays(3)),
                 List.of(new VacationDay(LocalDate.now().plusDays(1))),
                 VacationRequestStatus.CREATED)));
         when(vacationRequests.save(Mockito.any()))

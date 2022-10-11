@@ -5,13 +5,13 @@ import org.jmolecules.ddd.annotation.ValueObject;
 import java.time.LocalDate;
 
 @ValueObject
-public record TimePeriod(LocalDate start, LocalDate end) {
+public record DatePeriod(LocalDate start, LocalDate end) {
 
-    public TimePeriod {
+    public DatePeriod {
         if (start == null || end == null) {
-            throw new InvalidVacationSpanException(start, end, "either start or end is null");
+            throw new InvalidDatePeriodException(start, end, "either start or end is null");
         } else if (start.isAfter(end)) {
-            throw new InvalidVacationSpanException(start, end, "start after end");
+            throw new InvalidDatePeriodException(start, end, "start after end");
         }
     }
 

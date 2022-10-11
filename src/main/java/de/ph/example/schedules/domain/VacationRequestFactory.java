@@ -9,7 +9,7 @@ import java.util.List;
 public class VacationRequestFactory {
 
     // TODO not sure if the factory should ensure rules, that can not be ensured by the entity
-    public VacationRequest create(EmployeeId employeeId, TimePeriod period, List<LocalDate> holidays, List<RemainingLeave> remainingLeaves) {
+    public VacationRequest create(EmployeeId employeeId, DatePeriod period, List<LocalDate> holidays, List<RemainingLeave> remainingLeaves) {
         VacationRequest vacationRequest = new VacationRequest(null, employeeId, period);
         vacationRequest.calculateVacationDays(holidays);
 

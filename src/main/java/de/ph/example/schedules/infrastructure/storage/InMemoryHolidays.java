@@ -1,7 +1,7 @@
 package de.ph.example.schedules.infrastructure.storage;
 
 import de.ph.example.schedules.application.Holidays;
-import de.ph.example.schedules.domain.TimePeriod;
+import de.ph.example.schedules.domain.DatePeriod;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,7 +17,7 @@ class InMemoryHolidays implements Holidays {
     }
 
     @Override
-    public List<LocalDate> findByPeriod(TimePeriod period) {
+    public List<LocalDate> findByPeriod(DatePeriod period) {
         return null;
     }
 }

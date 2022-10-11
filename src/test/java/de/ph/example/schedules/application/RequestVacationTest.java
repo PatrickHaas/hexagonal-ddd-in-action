@@ -43,7 +43,7 @@ class RequestVacationTest {
         LocalDate lastSundayOfATwoWeekVacationSpan = nextWeeksMonday.plusDays(13);
 
         EmployeeId employeeId = EmployeeId.random();
-        TimePeriod vacationPeriod = new TimePeriod(nextWeeksMonday, lastSundayOfATwoWeekVacationSpan);
+        DatePeriod vacationPeriod = new DatePeriod(nextWeeksMonday, lastSundayOfATwoWeekVacationSpan);
 
         int[] years = Stream.of(nextWeeksMonday.getYear(), lastSundayOfATwoWeekVacationSpan.getYear()).mapToInt(Integer::intValue).distinct().toArray();
         List<RemainingLeave> remainingLeaves = new ArrayList<>();
@@ -82,7 +82,7 @@ class RequestVacationTest {
 
     @Test
     void requestVacation_shouldFail_whenTheRequestSpansTwoYearsAndTheRemainingLeaveOfTheFirstYearIsNotEnough() {
-        TimePeriod vacationSpan = new TimePeriod(LocalDate.of(2022, 12, 26), LocalDate.of(2023, 1, 6));
+        DatePeriod vacationSpan = new DatePeriod(LocalDate.of(2022, 12, 26), LocalDate.of(2023, 1, 6));
 
         EmployeeId employeeId = EmployeeId.random();
         when(calculateRemainingLeave.with(employeeId, vacationSpan)).thenReturn(List.of(
@@ -101,7 +101,7 @@ class RequestVacationTest {
 
     @Test
     void requestVacation_shouldFail_whenTheRequestSpansTwoYearsAndTheRemainingLeaveOfTheFirstYearIsZero() {
-        TimePeriod vacationSpan = new TimePeriod(LocalDate.of(2022, 12, 26), LocalDate.of(2023, 1, 6));
+        DatePeriod vacationSpan = new DatePeriod(LocalDate.of(2022, 12, 26), LocalDate.of(2023, 1, 6));
 
         EmployeeId employeeId = EmployeeId.random();
         when(calculateRemainingLeave.with(employeeId, vacationSpan)).thenReturn(List.of(
@@ -120,7 +120,7 @@ class RequestVacationTest {
 
     @Test
     void requestVacation_shouldFail_whenTheRequestSpansTwoYearsAndTheRemainingLeaveOfTheSecondYearIsNotEnough() {
-        TimePeriod vacationSpan = new TimePeriod(LocalDate.of(2022, 12, 26), LocalDate.of(2023, 1, 6));
+        DatePeriod vacationSpan = new DatePeriod(LocalDate.of(2022, 12, 26), LocalDate.of(2023, 1, 6));
 
         EmployeeId employeeId = EmployeeId.random();
         when(calculateRemainingLeave.with(employeeId, vacationSpan)).thenReturn(List.of(
@@ -139,7 +139,7 @@ class RequestVacationTest {
 
     @Test
     void requestVacation_shouldFail_whenTheRequestSpansTwoYearsAndTheRemainingLeaveOfTheSecondYearIsZero() {
-        TimePeriod vacationSpan = new TimePeriod(LocalDate.of(2022, 12, 26), LocalDate.of(2023, 1, 6));
+        DatePeriod vacationSpan = new DatePeriod(LocalDate.of(2022, 12, 26), LocalDate.of(2023, 1, 6));
 
         EmployeeId employeeId = EmployeeId.random();
         when(calculateRemainingLeave.with(employeeId, vacationSpan)).thenReturn(List.of(
@@ -158,7 +158,7 @@ class RequestVacationTest {
 
     @Test
     void requestVacation_shouldCalculateVacationDaysAndSaveTheRequest_whenTheRemainingLeaveJustFits() {
-        TimePeriod vacationPeriod = new TimePeriod(LocalDate.of(2022, 12, 26), LocalDate.of(2023, 1, 6));
+        DatePeriod vacationPeriod = new DatePeriod(LocalDate.of(2022, 12, 26), LocalDate.of(2023, 1, 6));
 
         EmployeeId employeeId = EmployeeId.random();
         when(calculateRemainingLeave.with(employeeId, vacationPeriod)).thenReturn(List.of(
