@@ -6,9 +6,9 @@ import org.jmolecules.ddd.annotation.Service;
 @Service
 public class HireEmployee {
 
-    private final Employees employees;
+    private final EmployeeRepository employees;
 
-    public HireEmployee(Employees employees) {
+    public HireEmployee(EmployeeRepository employees) {
         this.employees = employees;
     }
 

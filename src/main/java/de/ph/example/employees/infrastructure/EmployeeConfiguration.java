@@ -1,20 +1,20 @@
 package de.ph.example.employees.infrastructure;
 
+import de.ph.example.employees.application.EmployeeRepository;
 import de.ph.example.employees.application.FireEmployee;
 import de.ph.example.employees.application.HireEmployee;
-import de.ph.example.employees.application.Employees;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 class EmployeeConfiguration {
     @Bean
-    HireEmployee hireEmployee(Employees employees) {
+    HireEmployee hireEmployee(EmployeeRepository employees) {
         return new HireEmployee(employees);
     }
 
     @Bean
-    FireEmployee fireEmployee(Employees employees) {
+    FireEmployee fireEmployee(EmployeeRepository employees) {
         return new FireEmployee(employees);
     }
 }

@@ -7,9 +7,9 @@ import org.jmolecules.ddd.annotation.Service;
 
 @Service
 public class FireEmployee {
-    private final Employees employees;
+    private final EmployeeRepository employees;
 
-    public FireEmployee(Employees employees) {
+    public FireEmployee(EmployeeRepository employees) {
         this.employees = employees;
     }
 

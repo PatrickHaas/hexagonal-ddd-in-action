@@ -7,7 +7,7 @@ import org.jmolecules.ddd.annotation.Repository;
 import java.util.Optional;
 
 @Repository
-public interface Employees {
+public interface EmployeeRepository {
     Employee save(Employee employee);
 
     Optional<Employee> findById(EmployeeId id);

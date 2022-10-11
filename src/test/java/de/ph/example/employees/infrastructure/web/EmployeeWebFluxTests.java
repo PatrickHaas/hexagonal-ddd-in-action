@@ -1,6 +1,6 @@
 package de.ph.example.employees.infrastructure.web;
 
-import de.ph.example.employees.application.Employees;
+import de.ph.example.employees.application.EmployeeRepository;
 import de.ph.example.employees.application.HireEmployee;
 import de.ph.example.employees.domain.*;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ class EmployeeWebFluxTests {
     private EmployeeRoutes routes;
 
     @MockBean
-    private Employees employees;
+    private EmployeeRepository employees;
     @MockBean
     private HireEmployee hireEmployee;
 

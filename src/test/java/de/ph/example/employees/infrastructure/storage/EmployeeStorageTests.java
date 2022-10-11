@@ -1,6 +1,6 @@
 package de.ph.example.employees.infrastructure.storage;
 
-import de.ph.example.employees.application.Employees;
+import de.ph.example.employees.application.EmployeeRepository;
 import de.ph.example.employees.domain.Birthdate;
 import de.ph.example.employees.domain.Employee;
 import de.ph.example.employees.domain.FirstName;
@@ -30,7 +30,7 @@ class EmployeeStorageTests {
     @Container
     private static final MongoDBContainer mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo"));
     @Autowired
-    private Employees employees;
+    private EmployeeRepository employees;
 
     @DynamicPropertySource
     static void registerPgProperties(DynamicPropertyRegistry registry) {
