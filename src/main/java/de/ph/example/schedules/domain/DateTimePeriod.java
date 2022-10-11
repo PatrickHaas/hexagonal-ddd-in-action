@@ -20,8 +20,4 @@ public record DateTimePeriod(LocalDateTime start, LocalDateTime end) {
         return Duration.between(start, end).toMillis() / 1000.0 / 60.0 / 60.0;
     }
 
-    public boolean matchesYear(int year) {
-        return start.getYear() == year || end.getYear() == year;
-    }
-
 }
