@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class ScheduleConfiguration {
     @Bean
-    RequestVacation requestVacation(CalculateRemainingLeave calculateRemainingLeave, VacationRequestRepository vacationRequestRepository, HolidayRepository holidayRepository) {
-        return new RequestVacation(calculateRemainingLeave, new VacationRequestFactory(), vacationRequestRepository, holidayRepository);
+    RequestVacation requestVacation(CalculateRemainingLeave calculateRemainingLeave, VacationRequests vacationRequests, Holidays holidays) {
+        return new RequestVacation(calculateRemainingLeave, new VacationRequestFactory(), vacationRequests, holidays);
     }
 
     @Bean
-    CalculateRemainingLeave calculateRemainingLeave(VacationRequestRepository vacationRequestRepository, EmployeeRepository employeeRepository) {
-        return new CalculateRemainingLeave(vacationRequestRepository, employeeRepository);
+    CalculateRemainingLeave calculateRemainingLeave(VacationRequests vacationRequests, Employees employees) {
+        return new CalculateRemainingLeave(vacationRequests, employees);
     }
 }

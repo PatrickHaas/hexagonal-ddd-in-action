@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 class DeclineVacationRequestTest {
 
     @Mock
-    private VacationRequestRepository vacationRequestRepository;
+    private VacationRequests vacationRequests;
 
     @InjectMocks
     private DeclineVacationRequest declineVacationRequest;
@@ -28,13 +28,13 @@ class DeclineVacationRequestTest {
     @Test
     void approveVacationRequest_shouldApproveAndSaveRequest_whenItWasFound() {
         VacationRequestId vacationRequestId = VacationRequestId.random();
-        when(vacationRequestRepository.findById(vacationRequestId)).thenReturn(Optional.of(new VacationRequest(
+        when(vacationRequests.findById(vacationRequestId)).thenReturn(Optional.of(new VacationRequest(
                 vacationRequestId,
                 EmployeeId.random(),
                 new TimePeriod(LocalDate.now(), LocalDate.now().plusDays(3)),
                 List.of(new VacationDay(LocalDate.now().plusDays(1))),
                 VacationRequestStatus.CREATED)));
-        when(vacationRequestRepository.save(Mockito.any()))
+        when(vacationRequests.save(Mockito.any()))
                 .then(invocation -> invocation.getArgument(0, VacationRequest.class));
 
         VacationRequest declinedVacationRequest = declineVacationRequest.with(vacationRequestId);

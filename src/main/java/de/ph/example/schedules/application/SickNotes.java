@@ -1,7 +1,9 @@
 package de.ph.example.schedules.application;
 
 import de.ph.example.schedules.domain.SickNote;
+import org.jmolecules.ddd.annotation.Repository;
 
-public interface SickNoteRepository {
+@Repository
+public interface SickNotes {
     SickNote save(SickNote sickNote);
 }

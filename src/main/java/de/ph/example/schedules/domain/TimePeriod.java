@@ -1,7 +1,10 @@
 package de.ph.example.schedules.domain;
 
+import org.jmolecules.ddd.annotation.ValueObject;
+
 import java.time.LocalDate;
 
+@ValueObject
 public record TimePeriod(LocalDate start, LocalDate end) {
 
     public TimePeriod {

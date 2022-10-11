@@ -2,6 +2,8 @@ package de.ph.example.schedules.domain;
 
 import de.ph.example.employees.domain.EmployeeId;
 import lombok.Getter;
+import org.jmolecules.ddd.annotation.AggregateRoot;
+import org.jmolecules.ddd.annotation.Identity;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -10,7 +12,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@AggregateRoot
 public class VacationRequest {
+    @Identity
     @Getter
     private final VacationRequestId id;
     @Getter

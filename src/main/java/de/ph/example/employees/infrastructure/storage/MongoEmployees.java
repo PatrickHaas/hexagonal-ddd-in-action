@@ -1,15 +1,15 @@
 package de.ph.example.employees.infrastructure.storage;
 
-import de.ph.example.employees.application.EmployeeRepository;
+import de.ph.example.employees.application.Employees;
 import de.ph.example.employees.domain.*;
 
 import java.util.Optional;
 
-class MongoEmployeeRepository implements EmployeeRepository {
+class MongoEmployees implements Employees {
 
     private final SpringMongoEmployeeRepository employeeRepository;
 
-    public MongoEmployeeRepository(SpringMongoEmployeeRepository employeeRepository) {
+    public MongoEmployees(SpringMongoEmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 

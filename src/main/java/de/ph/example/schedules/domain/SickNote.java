@@ -2,12 +2,16 @@ package de.ph.example.schedules.domain;
 
 import de.ph.example.employees.domain.EmployeeId;
 import lombok.Getter;
+import org.jmolecules.ddd.annotation.AggregateRoot;
+import org.jmolecules.ddd.annotation.Identity;
 
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
+@AggregateRoot
 public class SickNote {
+    @Identity
     @Getter
     private final SickNoteId id;
     @Getter

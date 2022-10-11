@@ -5,30 +5,31 @@ import de.ph.example.schedules.domain.RemainingLeave;
 import de.ph.example.schedules.domain.TimePeriod;
 import de.ph.example.schedules.domain.VacationRequest;
 import de.ph.example.schedules.domain.VacationRequestFactory;
+import org.jmolecules.ddd.annotation.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Stream;
 
+@Service
 public class RequestVacation {
 
     private final CalculateRemainingLeave calculateRemainingLeave;
     private final VacationRequestFactory vacationRequestFactory;
-    private final VacationRequestRepository vacationRequestRepository;
-    private final HolidayRepository holidayRepository;
+    private final VacationRequests vacationRequests;
+    private final Holidays holidays;
 
-    public RequestVacation(CalculateRemainingLeave calculateRemainingLeave, VacationRequestFactory vacationRequestFactory, VacationRequestRepository vacationRequestRepository, HolidayRepository holidayRepository) {
+    public RequestVacation(CalculateRemainingLeave calculateRemainingLeave, VacationRequestFactory vacationRequestFactory, VacationRequests vacationRequests, Holidays holidays) {
         this.calculateRemainingLeave = calculateRemainingLeave;
         this.vacationRequestFactory = vacationRequestFactory;
-        this.vacationRequestRepository = vacationRequestRepository;
-        this.holidayRepository = holidayRepository;
+        this.vacationRequests = vacationRequests;
+        this.holidays = holidays;
     }
 
     public VacationRequest with(EmployeeId employeeId, TimePeriod period) {
-        List<LocalDate> holidays = holidayRepository.findByPeriod(period);
+        List<LocalDate> holidays = this.holidays.findByPeriod(period);
         List<RemainingLeave> remainingLeave = calculateRemainingLeave.with(employeeId, period);
         VacationRequest vacationRequest = vacationRequestFactory.create(employeeId, period, holidays, remainingLeave);
-        return vacationRequestRepository.save(vacationRequest);
+        return vacationRequests.save(vacationRequest);
     }
 
 }

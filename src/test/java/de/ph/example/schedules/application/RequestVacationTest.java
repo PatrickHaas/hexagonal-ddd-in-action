@@ -28,9 +28,9 @@ class RequestVacationTest {
     @Mock
     private CalculateRemainingLeave calculateRemainingLeave;
     @Mock
-    private VacationRequestRepository vacationRequestRepository;
+    private VacationRequests vacationRequests;
     @Mock
-    private HolidayRepository holidayRepository;
+    private Holidays holidays;
     @Spy
     private VacationRequestFactory vacationRequestFactory; // Allows us to auto-inject the real implementation
     @InjectMocks
@@ -52,8 +52,8 @@ class RequestVacationTest {
         }
         List<LocalDate> holidays = List.of(nextWeeksMonday, nextWeeksMonday.plusDays(2));
         when(calculateRemainingLeave.with(employeeId, vacationPeriod)).thenReturn(remainingLeaves);
-        when(holidayRepository.findByPeriod(vacationPeriod)).thenReturn(holidays);
-        when(vacationRequestRepository.save(Mockito.any()))
+        when(this.holidays.findByPeriod(vacationPeriod)).thenReturn(holidays);
+        when(vacationRequests.save(Mockito.any()))
                 .then(invocation -> {
                     VacationRequest givenVacationRequest = invocation.getArgument(0, VacationRequest.class);
                     return new VacationRequest(
@@ -89,7 +89,7 @@ class RequestVacationTest {
                 new RemainingLeave(employeeId, 2022, 2),
                 new RemainingLeave(employeeId, 2023, 30)
         ));
-        when(holidayRepository.findByPeriod(vacationSpan)).thenReturn(List.of(
+        when(holidays.findByPeriod(vacationSpan)).thenReturn(List.of(
                 LocalDate.of(2022, 12, 26),
                 LocalDate.of(2023, 1, 1)
         ));
@@ -108,7 +108,7 @@ class RequestVacationTest {
                 new RemainingLeave(employeeId, 2022, 0),
                 new RemainingLeave(employeeId, 2023, 30)
         ));
-        when(holidayRepository.findByPeriod(vacationSpan)).thenReturn(List.of(
+        when(holidays.findByPeriod(vacationSpan)).thenReturn(List.of(
                 LocalDate.of(2022, 12, 26),
                 LocalDate.of(2023, 1, 1)
         ));
@@ -127,7 +127,7 @@ class RequestVacationTest {
                 new RemainingLeave(employeeId, 2022, 10),
                 new RemainingLeave(employeeId, 2023, 2)
         ));
-        when(holidayRepository.findByPeriod(vacationSpan)).thenReturn(List.of(
+        when(holidays.findByPeriod(vacationSpan)).thenReturn(List.of(
                 LocalDate.of(2022, 12, 26),
                 LocalDate.of(2023, 1, 1)
         ));
@@ -146,7 +146,7 @@ class RequestVacationTest {
                 new RemainingLeave(employeeId, 2022, 10),
                 new RemainingLeave(employeeId, 2023, 0)
         ));
-        when(holidayRepository.findByPeriod(vacationSpan)).thenReturn(List.of(
+        when(holidays.findByPeriod(vacationSpan)).thenReturn(List.of(
                 LocalDate.of(2022, 12, 26),
                 LocalDate.of(2023, 1, 1)
         ));
@@ -165,11 +165,11 @@ class RequestVacationTest {
                 new RemainingLeave(employeeId, 2022, 4),
                 new RemainingLeave(employeeId, 2023, 5)
         ));
-        when(holidayRepository.findByPeriod(vacationPeriod)).thenReturn(List.of(
+        when(holidays.findByPeriod(vacationPeriod)).thenReturn(List.of(
                 LocalDate.of(2022, 12, 26),
                 LocalDate.of(2023, 1, 1)
         ));
-        when(vacationRequestRepository.save(Mockito.any()))
+        when(vacationRequests.save(Mockito.any()))
                 .then(invocation -> {
                     VacationRequest givenVacationRequest = invocation.getArgument(0, VacationRequest.class);
                     return new VacationRequest(

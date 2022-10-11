@@ -1,12 +1,12 @@
 package de.ph.example.schedules.infrastructure.storage;
 
-import de.ph.example.schedules.application.HolidayRepository;
+import de.ph.example.schedules.application.Holidays;
 import de.ph.example.schedules.domain.TimePeriod;
 
 import java.time.LocalDate;
 import java.util.List;
 
-class InMemoryHolidayRepository implements HolidayRepository {
+class InMemoryHolidays implements Holidays {
     public List<LocalDate> findByYear(int year) {
         return List.of(
                 LocalDate.of(year, 1, 1),

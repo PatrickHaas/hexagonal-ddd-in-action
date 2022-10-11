@@ -4,16 +4,18 @@ import de.ph.example.schedules.domain.VacationRequest;
 import de.ph.example.schedules.domain.VacationRequestId;
 import de.ph.example.schedules.domain.VacationRequestNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.jmolecules.ddd.annotation.Service;
 
+@Service
 @RequiredArgsConstructor
 public class ApproveVacationRequest {
 
-    private final VacationRequestRepository vacationRequestRepository;
+    private final VacationRequests vacationRequests;
 
     public VacationRequest with(VacationRequestId id) {
-        VacationRequest vacationRequest = vacationRequestRepository.findById(id).orElseThrow(() -> new VacationRequestNotFoundException(id));
+        VacationRequest vacationRequest = vacationRequests.findById(id).orElseThrow(() -> new VacationRequestNotFoundException(id));
         vacationRequest.approve();
-        return vacationRequestRepository.save(vacationRequest);
+        return vacationRequests.save(vacationRequest);
     }
 
 }

@@ -1,25 +1,25 @@
 package de.ph.example.schedules.infrastructure.storage;
 
-import de.ph.example.schedules.application.EmployeeRepository;
-import de.ph.example.schedules.application.HolidayRepository;
-import de.ph.example.schedules.application.VacationRequestRepository;
+import de.ph.example.schedules.application.Employees;
+import de.ph.example.schedules.application.Holidays;
+import de.ph.example.schedules.application.VacationRequests;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 class ScheduleStorageConfiguration {
     @Bean
-    EmployeeRepository employeeRepository(VacationRequestRepository vacationRequestRepository) {
-        return new InMemoryEmployeeRepository(vacationRequestRepository);
+    Employees employeeRepository(VacationRequests vacationRequests) {
+        return new InMemoryEmployees(vacationRequests);
     }
 
     @Bean
-    VacationRequestRepository vacationRequestRepository() {
-        return new InMemoryVacationRequestRepository();
+    VacationRequests vacationRequestRepository() {
+        return new InMemoryVacationRequests();
     }
 
     @Bean
-    HolidayRepository holidayRepository() {
-        return new InMemoryHolidayRepository();
+    Holidays holidayRepository() {
+        return new InMemoryHolidays();
     }
 }

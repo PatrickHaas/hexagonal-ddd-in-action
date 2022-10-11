@@ -43,7 +43,7 @@ public class Employee {
 
     public void fire() {
         if (hireDate == null) {
-            throw new IllegalFiringException(this);
+            throw new IllegalFiringException(getId());
         }
         this.fireDate = new FireDate(LocalDate.now());
     }

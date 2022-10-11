@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 class CallInSickTest {
 
     @Mock
-    private SickNoteRepository repository;
+    private SickNotes repository;
 
     @InjectMocks
     private CallInSick callInSick;
