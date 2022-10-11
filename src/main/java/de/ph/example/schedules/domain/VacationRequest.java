@@ -37,6 +37,7 @@ public class VacationRequest {
         return period.matchesYear(year);
     }
 
+    // TODO A vacation request is not automatically valid since we need the list of holidays to calculate the vacation days of this request, may be pass the holidays to the constructor?
     public void calculateVacationDays(List<LocalDate> holidays) {
         vacationDays = new ArrayList<>();
         long daysBetween = ChronoUnit.DAYS.between(period.start(), period.end());
@@ -47,6 +48,9 @@ public class VacationRequest {
                 continue;
             }
             vacationDays.add(new VacationDay(possibleVacationDay));
+        }
+        if (vacationDays.isEmpty()) {
+            throw new IllegalArgumentException("Vacation request must at least contain one vacation day");
         }
     }
 

@@ -26,4 +26,9 @@ class InMemoryVacationRequestRepository implements VacationRequestRepository {
                         !Objects.equals(vacationRequest.getEmployeeId(), employeeId) &&
                                 Arrays.stream(years).anyMatch(vacationRequest::matchesYear)).toList();
     }
+
+    @Override
+    public Optional<VacationRequest> findById(VacationRequestId id) {
+        return Optional.ofNullable(vacationRequests.get(id));
+    }
 }
