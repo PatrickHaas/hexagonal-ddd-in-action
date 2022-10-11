@@ -4,6 +4,7 @@ package de.ph.example.schedules.domain;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,7 +17,9 @@ class VacationRequestTest {
         VacationRequest vacationRequest = new VacationRequest(
                 null,
                 EmployeeId.random(),
-                new DatePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
+                new DatePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6)),
+                Collections.emptyList(),
+                Collections.emptyList()
         );
         assertThat(vacationRequest.matchesYear(1999)).isFalse();
         assertThat(vacationRequest.matchesYear(2021)).isFalse();
@@ -28,7 +31,9 @@ class VacationRequestTest {
         VacationRequest vacationRequest = new VacationRequest(
                 null,
                 EmployeeId.random(),
-                new DatePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
+                new DatePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6)),
+                Collections.emptyList(),
+                Collections.emptyList()
         );
         assertThat(vacationRequest.matchesYear(2022)).isTrue();
         assertThat(vacationRequest.matchesYear(2023)).isTrue();
@@ -39,14 +44,15 @@ class VacationRequestTest {
         VacationRequest vacationRequest = new VacationRequest(
                 null,
                 EmployeeId.random(),
-                new DatePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6))
+                new DatePeriod(LocalDate.of(2022, 12, 19), LocalDate.of(2023, 1, 6)),
+                List.of(
+                        LocalDate.of(2022, 12, 24),
+                        LocalDate.of(2022, 12, 25),
+                        LocalDate.of(2022, 12, 26),
+                        LocalDate.of(2023, 1, 1)
+                ),
+                Collections.emptyList()
         );
-        vacationRequest.calculateVacationDays(List.of(
-                LocalDate.of(2022, 12, 24),
-                LocalDate.of(2022, 12, 25),
-                LocalDate.of(2022, 12, 26),
-                LocalDate.of(2023, 1, 1)
-        ));
 
         assertThat(vacationRequest.getVacationDays()).containsExactlyInAnyOrder(
                 new VacationDay(LocalDate.of(2022, 12, 19)),
@@ -68,17 +74,18 @@ class VacationRequestTest {
 
     @Test
     void calculateVacationDays_shouldFail_whenNoPossibleVacationDaysAreInPeriod() {
-        VacationRequest vacationRequest = new VacationRequest(
+        assertThatThrownBy(() -> new VacationRequest(
                 null,
                 EmployeeId.random(),
-                new DatePeriod(LocalDate.of(2022, 12, 24), LocalDate.of(2022, 12, 26))
-        );
-        assertThatThrownBy(() -> vacationRequest.calculateVacationDays(List.of(
-                LocalDate.of(2022, 12, 24),
-                LocalDate.of(2022, 12, 25),
-                LocalDate.of(2022, 12, 26),
-                LocalDate.of(2023, 1, 1)
-        ))).isInstanceOf(IllegalArgumentException.class);
+                new DatePeriod(LocalDate.of(2022, 12, 24), LocalDate.of(2022, 12, 26)),
+                List.of(
+                        LocalDate.of(2022, 12, 24),
+                        LocalDate.of(2022, 12, 25),
+                        LocalDate.of(2022, 12, 26),
+                        LocalDate.of(2023, 1, 1)
+                ),
+                Collections.emptyList()
+        )).isInstanceOf(IllegalArgumentException.class);
     }
 
 }

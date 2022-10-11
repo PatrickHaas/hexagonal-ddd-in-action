@@ -24,8 +24,15 @@ public class VacationRequest {
     private VacationRequestStatus status;
     private List<VacationDay> vacationDays;
 
-    public VacationRequest(VacationRequestId id, EmployeeId employeeId, DatePeriod vacationPeriod) {
+    public VacationRequest(VacationRequestId id, EmployeeId employeeId, DatePeriod vacationPeriod, List<LocalDate> holidays, List<RemainingLeave> remainingLeaves) {
         this(id, employeeId, vacationPeriod, null, VacationRequestStatus.CREATED);
+        calculateVacationDays(holidays);
+        // Validate remaining leave
+        if (remainingLeaves.stream().anyMatch(remainingLeave -> remainingLeave.days() == 0)) {
+            throw new InvalidVacationRequestException(InvalidVacationRequestException.InvalidVacationRequestReason.NO_MORE_VACATION_LEFT);
+        } else if (remainingLeaves.stream().anyMatch(remainingLeave -> remainingLeave.days() - getVacationDaysByYear(remainingLeave.year()).size() < 0)) {
+            throw new InvalidVacationRequestException(InvalidVacationRequestException.InvalidVacationRequestReason.NOT_ENOUGH_VACATION_LEFT);
+        }
     }
 
     public VacationRequest(VacationRequestId id, EmployeeId employeeId, DatePeriod vacationPeriod, List<VacationDay> vacationDays, VacationRequestStatus status) {
@@ -40,8 +47,7 @@ public class VacationRequest {
         return period.matchesYear(year);
     }
 
-    // TODO A vacation request is not automatically valid since we need the list of holidays to calculate the vacation days of this request, may be pass the holidays to the constructor?
-    public void calculateVacationDays(List<LocalDate> holidays) {
+    void calculateVacationDays(List<LocalDate> holidays) {
         vacationDays = new ArrayList<>();
         long daysBetween = ChronoUnit.DAYS.between(period.start(), period.end());
         for (int index = 0; index <= daysBetween; index++) {

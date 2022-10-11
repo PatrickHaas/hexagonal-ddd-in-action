@@ -1,6 +1,8 @@
 package de.ph.example.schedules.application;
 
-import de.ph.example.schedules.domain.*;
+import de.ph.example.schedules.domain.DateTimePeriod;
+import de.ph.example.schedules.domain.ProjectAssignment;
+import de.ph.example.schedules.domain.ProjectAssignmentId;
 import lombok.RequiredArgsConstructor;
 import org.jmolecules.ddd.annotation.Service;
 

@@ -1,13 +1,11 @@
 package de.ph.example.schedules.application;
 
-import de.ph.example.schedules.domain.EmployeeId;
 import de.ph.example.schedules.domain.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.DayOfWeek;
@@ -31,8 +29,6 @@ class RequestVacationTest {
     private VacationRequests vacationRequests;
     @Mock
     private Holidays holidays;
-    @Spy
-    private VacationRequestFactory vacationRequestFactory; // Allows us to auto-inject the real implementation
     @InjectMocks
     private RequestVacation requestVacation;
 
