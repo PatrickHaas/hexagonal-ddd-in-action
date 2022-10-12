@@ -75,6 +75,28 @@ class EmployeeWebFluxTests {
     }
 
     @Test
+    void postToDepartmentsOfEmployee_shouldAssignDepartmentToEmployee() {
+        EmployeeId employeeId = EmployeeId.random();
+        DepartmentId departmentId = DepartmentId.random();
+        AssignDepartmentRequest assignDepartmentRequest = new AssignDepartmentRequest(employeeId.value(), departmentId.value());
+        Employee employee = new Employee(employeeId, new FirstName("Steve"), new LastName("Rogers"), new Birthdate(LocalDate.of(1918, 7, 4)));
+        employee.assignDepartment(departmentId);
+        when(assignDepartment.with(employeeId, departmentId))
+                .thenReturn(employee);
+
+        WebTestClient client = WebTestClient
+                .bindToRouterFunction(routes.routes())
+                .build();
+        client.post()
+                .uri("/employees/{employeeId}/departments", employeeId.value())
+                .bodyValue(assignDepartmentRequest)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(EmployeeResponse.class)
+                .isEqualTo(EmployeeResponse.fromEmployee(employee));
+    }
+
+    @Test
     void getEmployees_shouldReturnAListOfEmployees() {
         EmployeeId stevesId = EmployeeId.random();
         Employee steve = new Employee(stevesId, new FirstName("Steve"), new LastName("Rogers"), new Birthdate(LocalDate.of(1918, 7, 4)));

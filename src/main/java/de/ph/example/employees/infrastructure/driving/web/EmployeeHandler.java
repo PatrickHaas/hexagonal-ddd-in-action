@@ -42,7 +42,7 @@ public class EmployeeHandler {
     public Mono<ServerResponse> assignDepartment(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(AssignDepartmentRequest.class)
                 .map(assignDepartmentRequest -> assignDepartment.with(new EmployeeId(assignDepartmentRequest.employeeId()), new DepartmentId(assignDepartmentRequest.departmentId())))
-                .flatMap(employee -> ServerResponse.ok().bodyValue(employee));
+                .flatMap(employee -> ServerResponse.ok().bodyValue(EmployeeResponse.fromEmployee(employee)));
     }
 
     public Mono<ServerResponse> findAll(ServerRequest serverRequest) {

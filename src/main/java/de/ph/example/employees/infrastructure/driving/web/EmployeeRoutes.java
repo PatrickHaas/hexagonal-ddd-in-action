@@ -23,7 +23,7 @@ public class EmployeeRoutes {
         return route(GET("/employees"), handler::findAll)
                 .andRoute(POST("/hired-employees"), handler::hire)
                 .andRoute(POST("/fired-employees"), handler::fire)
-                .andRoute(POST("/hired-employees/{employeeId}/departments"), handler::assignDepartment);
+                .andRoute(POST("/employees/{employeeId}/departments"), handler::assignDepartment);
     }
 
 }

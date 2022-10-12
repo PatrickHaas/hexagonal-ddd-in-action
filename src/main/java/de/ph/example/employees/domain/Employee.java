@@ -60,6 +60,6 @@ public class Employee {
     }
 
     public Set<DepartmentId> getAssignedDepartments() {
-        return assignedDepartments == null ? null : Collections.unmodifiableSet(assignedDepartments);
+        return assignedDepartments == null ? Collections.emptySet() : Collections.unmodifiableSet(assignedDepartments);
     }
 }
