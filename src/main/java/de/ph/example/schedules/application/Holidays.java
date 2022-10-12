@@ -1,6 +1,6 @@
 package de.ph.example.schedules.application;
 
-import de.ph.example.schedules.domain.DatePeriod;
+import de.ph.example.shared.DatePeriod;
 import org.jmolecules.ddd.annotation.Repository;
 
 import java.time.LocalDate;

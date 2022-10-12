@@ -22,7 +22,7 @@ public class FireEmployeeTest {
     private Employees employees;
 
     @Mock
-    private ApplicationEvents applicationEvents;
+    private EmployeeApplicationEvents employeeApplicationEvents;
 
     @InjectMocks
     private FireEmployee fireEmployee;
@@ -36,7 +36,7 @@ public class FireEmployeeTest {
         when(employees.save(Mockito.any())).thenAnswer(invocation -> invocation.getArgument(0, Employee.class));
         Employee firedEmployee = fireEmployee.with(employeeId);
         assertThat(firedEmployee.getFireDate().value()).isEqualTo(LocalDate.now());
-        verify(applicationEvents).employeeFired(new EmployeeFired(employeeId, firedEmployee.getFirstName(), firedEmployee.getLastName()));
+        verify(employeeApplicationEvents).employeeFired(new EmployeeFired(employeeId, firedEmployee.getFirstName(), firedEmployee.getLastName()));
     }
 
 }

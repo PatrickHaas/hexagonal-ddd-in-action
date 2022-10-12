@@ -1,5 +1,6 @@
-package de.ph.example.schedules.domain;
+package de.ph.example.shared;
 
+import de.ph.example.schedules.domain.InvalidDateTimePeriodException;
 import org.jmolecules.ddd.annotation.ValueObject;
 
 import java.time.Duration;

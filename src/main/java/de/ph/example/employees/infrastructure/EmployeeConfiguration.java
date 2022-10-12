@@ -7,13 +7,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class EmployeeConfiguration {
     @Bean
-    HireEmployee hireEmployee(Employees employees, ApplicationEvents applicationEvents) {
-        return new HireEmployee(employees, applicationEvents);
+    HireEmployee hireEmployee(Employees employees, EmployeeApplicationEvents employeeApplicationEvents) {
+        return new HireEmployee(employees, employeeApplicationEvents);
     }
 
     @Bean
-    FireEmployee fireEmployee(Employees employees, ApplicationEvents applicationEvents) {
-        return new FireEmployee(employees, applicationEvents);
+    FireEmployee fireEmployee(Employees employees, EmployeeApplicationEvents employeeApplicationEvents) {
+        return new FireEmployee(employees, employeeApplicationEvents);
     }
 
     @Bean

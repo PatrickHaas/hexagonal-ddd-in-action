@@ -1,6 +1,7 @@
 package de.ph.example.schedules.application;
 
 import de.ph.example.schedules.domain.*;
+import de.ph.example.shared.DatePeriod;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

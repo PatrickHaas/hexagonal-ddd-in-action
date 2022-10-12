@@ -1,5 +1,7 @@
 package de.ph.example.schedules.domain;
 
+import de.ph.example.shared.DatePeriod;
+import de.ph.example.shared.DateTimePeriod;
 import lombok.Getter;
 import org.jmolecules.ddd.annotation.AggregateRoot;
 import org.jmolecules.ddd.annotation.Identity;
@@ -15,6 +17,8 @@ public class ProjectAssignment {
     @Getter
     private final ProjectAssignmentId id;
     @Getter
+    private final ProjectId projectId;
+    @Getter
     private final EmployeeId employeeId;
     @Getter
     private final DatePeriod period;
@@ -23,8 +27,9 @@ public class ProjectAssignment {
 
     private final List<WorkingHoursRecord> records;
 
-    public ProjectAssignment(ProjectAssignmentId id, EmployeeId employeeId, DatePeriod period, double assignedHours) {
+    public ProjectAssignment(ProjectAssignmentId id, ProjectId projectId, EmployeeId employeeId, DatePeriod period, double assignedHours) {
         this.id = id;
+        this.projectId = projectId;
         this.employeeId = employeeId;
         this.period = period;
         this.assignedHours = assignedHours;

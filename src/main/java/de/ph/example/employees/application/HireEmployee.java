@@ -9,7 +9,7 @@ import org.jmolecules.ddd.annotation.Service;
 public class HireEmployee {
 
     private final Employees employees;
-    private final ApplicationEvents applicationEvents;
+    private final EmployeeApplicationEvents employeeApplicationEvents;
 
     public Employee with(FirstName firstName, LastName lastName, Birthdate birthdate) {
         return with(null, firstName, lastName, birthdate);
@@ -19,7 +19,7 @@ public class HireEmployee {
         Employee employee = new Employee(id, firstName, lastName, birthdate);
         employee.hire();
         Employee savedEmployee = employees.save(employee);
-        applicationEvents.employeeHired(new EmployeeHired(savedEmployee.getId(), savedEmployee.getFirstName(), savedEmployee.getLastName()));
+        employeeApplicationEvents.employeeHired(new EmployeeHired(savedEmployee.getId(), savedEmployee.getFirstName(), savedEmployee.getLastName()));
         return savedEmployee;
     }
 }

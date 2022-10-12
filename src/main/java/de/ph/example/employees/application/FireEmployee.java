@@ -11,13 +11,13 @@ import org.jmolecules.ddd.annotation.Service;
 @RequiredArgsConstructor
 public class FireEmployee {
     private final Employees employees;
-    private final ApplicationEvents applicationEvents;
+    private final EmployeeApplicationEvents employeeApplicationEvents;
 
     public Employee with(EmployeeId id) {
         Employee employee = employees.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
         employee.fire();
         Employee firedEmployee = employees.save(employee);
-        applicationEvents.employeeFired(new EmployeeFired(id, firedEmployee.getFirstName(), firedEmployee.getLastName()));
+        employeeApplicationEvents.employeeFired(new EmployeeFired(id, firedEmployee.getFirstName(), firedEmployee.getLastName()));
         return firedEmployee;
     }
 }

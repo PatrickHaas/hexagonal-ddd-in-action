@@ -22,7 +22,7 @@ public class HireEmployeeTest {
     private Employees employees;
 
     @Mock
-    private ApplicationEvents applicationEvents;
+    private EmployeeApplicationEvents employeeApplicationEvents;
 
     @InjectMocks
     private HireEmployee hireEmployee;
@@ -38,7 +38,7 @@ public class HireEmployeeTest {
         assertThat(employeeArgumentCaptor.getValue().getFirstName()).isEqualTo(new FirstName("Steve"));
         assertThat(employeeArgumentCaptor.getValue().getLastName()).isEqualTo(new LastName("Rogers"));
         assertThat(employeeArgumentCaptor.getValue().getBirthdate()).isEqualTo(new Birthdate(LocalDate.of(1918, 7, 4)));
-        verify(applicationEvents).employeeHired(new EmployeeHired(employeeId, hiredEmployee.getFirstName(), hiredEmployee.getLastName()));
+        verify(employeeApplicationEvents).employeeHired(new EmployeeHired(employeeId, hiredEmployee.getFirstName(), hiredEmployee.getLastName()));
     }
 
     @Test
@@ -51,6 +51,6 @@ public class HireEmployeeTest {
         assertThat(employeeArgumentCaptor.getValue().getFirstName()).isEqualTo(new FirstName("Steve"));
         assertThat(employeeArgumentCaptor.getValue().getLastName()).isEqualTo(new LastName("Rogers"));
         assertThat(employeeArgumentCaptor.getValue().getBirthdate()).isEqualTo(new Birthdate(LocalDate.of(1918, 7, 4)));
-        verify(applicationEvents).employeeHired(new EmployeeHired(hiredEmployee.getId(), hiredEmployee.getFirstName(), hiredEmployee.getLastName()));
+        verify(employeeApplicationEvents).employeeHired(new EmployeeHired(hiredEmployee.getId(), hiredEmployee.getFirstName(), hiredEmployee.getLastName()));
     }
 }

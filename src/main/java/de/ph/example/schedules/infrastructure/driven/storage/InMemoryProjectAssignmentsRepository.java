@@ -20,7 +20,7 @@ class InMemoryProjectAssignmentsRepository implements ProjectAssignments {
     @Override
     public ProjectAssignment save(ProjectAssignment projectAssignment) {
         ProjectAssignmentId projectAssignmentId = Optional.ofNullable(projectAssignment.getId()).orElseGet(ProjectAssignmentId::random);
-        ProjectAssignment savedProjectAssignment = new ProjectAssignment(projectAssignmentId, projectAssignment.getEmployeeId(), projectAssignment.getPeriod(), projectAssignment.getAssignedHours());
+        ProjectAssignment savedProjectAssignment = new ProjectAssignment(projectAssignmentId, projectAssignment.getProjectId(), projectAssignment.getEmployeeId(), projectAssignment.getPeriod(), projectAssignment.getAssignedHours());
         projectAssignments.put(projectAssignmentId, savedProjectAssignment);
         return savedProjectAssignment;
     }

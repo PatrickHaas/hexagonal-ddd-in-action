@@ -1,6 +1,6 @@
 package de.ph.example.schedules.application;
 
-import de.ph.example.schedules.domain.DateTimePeriod;
+import de.ph.example.shared.DateTimePeriod;
 import de.ph.example.schedules.domain.ProjectAssignment;
 import de.ph.example.schedules.domain.ProjectAssignmentId;
 import de.ph.example.schedules.domain.ProjectAssignmentNotFoundException;

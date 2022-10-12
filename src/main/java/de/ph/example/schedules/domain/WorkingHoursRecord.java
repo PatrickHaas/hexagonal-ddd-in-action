@@ -1,5 +1,6 @@
 package de.ph.example.schedules.domain;
 
+import de.ph.example.shared.DateTimePeriod;
 import lombok.Getter;
 import org.jmolecules.ddd.annotation.Entity;
 import org.jmolecules.ddd.annotation.Identity;

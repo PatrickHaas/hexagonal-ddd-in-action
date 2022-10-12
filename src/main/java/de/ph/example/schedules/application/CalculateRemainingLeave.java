@@ -3,7 +3,7 @@ package de.ph.example.schedules.application;
 import de.ph.example.schedules.domain.EmployeeId;
 import de.ph.example.schedules.domain.PermittedLeave;
 import de.ph.example.schedules.domain.RemainingLeave;
-import de.ph.example.schedules.domain.DatePeriod;
+import de.ph.example.shared.DatePeriod;
 import lombok.RequiredArgsConstructor;
 import org.jmolecules.ddd.annotation.Service;
 
