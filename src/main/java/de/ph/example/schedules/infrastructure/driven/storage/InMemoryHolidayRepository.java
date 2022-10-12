@@ -1,4 +1,4 @@
-package de.ph.example.schedules.infrastructure.storage;
+package de.ph.example.schedules.infrastructure.driven.storage;
 
 import de.ph.example.schedules.application.Holidays;
 import de.ph.example.schedules.domain.DatePeriod;

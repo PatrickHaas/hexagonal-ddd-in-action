@@ -1,9 +1,6 @@
 package de.ph.example.employees.infrastructure;
 
-import de.ph.example.employees.application.ApplicationEvents;
-import de.ph.example.employees.application.Employees;
-import de.ph.example.employees.application.FireEmployee;
-import de.ph.example.employees.application.HireEmployee;
+import de.ph.example.employees.application.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,5 +14,15 @@ class EmployeeConfiguration {
     @Bean
     FireEmployee fireEmployee(Employees employees, ApplicationEvents applicationEvents) {
         return new FireEmployee(employees, applicationEvents);
+    }
+
+    @Bean
+    FindEmployees findEmployees(Employees employees) {
+        return new FindEmployees(employees);
+    }
+
+    @Bean
+    AssignDepartment assignDepartment(Employees employees, Departments departments) {
+        return new AssignDepartment(employees, departments);
     }
 }

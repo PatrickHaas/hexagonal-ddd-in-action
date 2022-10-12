@@ -1,4 +1,4 @@
-package de.ph.example.employees.infrastructure.events;
+package de.ph.example.employees.infrastructure.driven.events;
 
 import de.ph.example.employees.application.ApplicationEvents;
 import de.ph.example.employees.domain.EmployeeFired;

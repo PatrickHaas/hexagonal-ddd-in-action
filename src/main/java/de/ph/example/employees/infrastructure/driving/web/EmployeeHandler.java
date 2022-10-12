@@ -1,11 +1,11 @@
-package de.ph.example.employees.infrastructure.web;
+package de.ph.example.employees.infrastructure.driving.web;
 
+import de.ph.example.employees.application.AssignDepartment;
+import de.ph.example.employees.application.FindEmployees;
 import de.ph.example.employees.application.FireEmployee;
 import de.ph.example.employees.application.HireEmployee;
-import de.ph.example.employees.domain.Birthdate;
-import de.ph.example.employees.domain.EmployeeId;
-import de.ph.example.employees.domain.FirstName;
-import de.ph.example.employees.domain.LastName;
+import de.ph.example.employees.domain.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -14,15 +14,13 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 
 @Component
+@RequiredArgsConstructor
 public class EmployeeHandler {
 
+    private final FindEmployees findEmployees;
     private final HireEmployee hireEmployee;
     private final FireEmployee fireEmployee;
-
-    public EmployeeHandler(HireEmployee hireEmployee, FireEmployee fireEmployee) {
-        this.hireEmployee = hireEmployee;
-        this.fireEmployee = fireEmployee;
-    }
+    private final AssignDepartment assignDepartment;
 
     public Mono<ServerResponse> hire(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(HireEmployeeRequest.class)
@@ -39,6 +37,17 @@ public class EmployeeHandler {
         return serverRequest.bodyToMono(FireEmployeeRequest.class)
                 .map(fireEmployeeRequest -> fireEmployee.with(new EmployeeId(fireEmployeeRequest.id())))
                 .flatMap(employee -> ServerResponse.noContent().build());
+    }
+
+    public Mono<ServerResponse> assignDepartment(ServerRequest serverRequest) {
+        return serverRequest.bodyToMono(AssignDepartmentRequest.class)
+                .map(assignDepartmentRequest -> assignDepartment.with(new EmployeeId(assignDepartmentRequest.employeeId()), new DepartmentId(assignDepartmentRequest.departmentId())))
+                .flatMap(employee -> ServerResponse.ok().bodyValue(employee));
+    }
+
+    public Mono<ServerResponse> findAll(ServerRequest serverRequest) {
+        return Mono.just(findEmployees.findAll().stream().map(EmployeeResponse::fromEmployee).toList())
+                .flatMap(employees -> ServerResponse.ok().bodyValue(employees));
     }
 
 }

@@ -1,4 +1,4 @@
-package de.ph.example.employees.infrastructure.storage;
+package de.ph.example.employees.infrastructure.driven.storage;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

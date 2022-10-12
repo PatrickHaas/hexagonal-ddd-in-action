@@ -1,8 +1,9 @@
-package de.ph.example.employees.infrastructure.storage;
+package de.ph.example.employees.infrastructure.driven.storage;
 
 import de.ph.example.employees.application.Employees;
 import de.ph.example.employees.domain.*;
 
+import java.util.List;
 import java.util.Optional;
 
 class MongoEmployees implements Employees {
@@ -22,6 +23,11 @@ class MongoEmployees implements Employees {
     public Optional<Employee> findById(EmployeeId id) {
         return employeeRepository.findById(id.value())
                 .map(this::fromEntity);
+    }
+
+    @Override
+    public List<Employee> findAll() {
+        return employeeRepository.findAll().stream().map(this::fromEntity).toList();
     }
 
     EmployeeEntity toEntity(Employee employee) {

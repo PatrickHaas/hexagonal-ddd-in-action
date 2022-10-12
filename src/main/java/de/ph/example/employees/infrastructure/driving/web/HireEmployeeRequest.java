@@ -1,4 +1,4 @@
-package de.ph.example.employees.infrastructure.web;
+package de.ph.example.employees.infrastructure.driving.web;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

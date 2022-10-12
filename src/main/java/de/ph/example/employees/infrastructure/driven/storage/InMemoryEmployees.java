@@ -1,12 +1,10 @@
-package de.ph.example.employees.infrastructure.storage;
+package de.ph.example.employees.infrastructure.driven.storage;
 
 import de.ph.example.employees.application.Employees;
 import de.ph.example.employees.domain.Employee;
 import de.ph.example.employees.domain.EmployeeId;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class InMemoryEmployees implements Employees {
 
@@ -23,5 +21,10 @@ public class InMemoryEmployees implements Employees {
     @Override
     public Optional<Employee> findById(EmployeeId id) {
         return Optional.ofNullable(employees.get(id));
+    }
+
+    @Override
+    public List<Employee> findAll() {
+        return new ArrayList<>(employees.values());
     }
 }

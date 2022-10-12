@@ -11,7 +11,7 @@ public class AssignDepartment {
     private final Employees employees;
     private final Departments departments;
 
-    Employee with(EmployeeId employeeId, DepartmentId departmentId) {
+    public Employee with(EmployeeId employeeId, DepartmentId departmentId) {
         Employee employee = employees.findById(employeeId).orElseThrow(() -> new EmployeeNotFoundException(employeeId));
         departments.findById(departmentId).orElseThrow(() -> new DepartmentNotFoundException(departmentId));
         employee.assignDepartment(departmentId);

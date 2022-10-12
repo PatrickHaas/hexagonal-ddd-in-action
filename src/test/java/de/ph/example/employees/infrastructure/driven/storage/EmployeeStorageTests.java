@@ -1,10 +1,11 @@
-package de.ph.example.employees.infrastructure.storage;
+package de.ph.example.employees.infrastructure.driven.storage;
 
 import de.ph.example.employees.application.Employees;
 import de.ph.example.employees.domain.Birthdate;
 import de.ph.example.employees.domain.Employee;
 import de.ph.example.employees.domain.FirstName;
 import de.ph.example.employees.domain.LastName;
+import de.ph.example.employees.infrastructure.driven.storage.EmployeeStorageConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;

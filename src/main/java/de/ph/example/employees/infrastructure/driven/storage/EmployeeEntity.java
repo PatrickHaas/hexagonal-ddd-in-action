@@ -1,4 +1,4 @@
-package de.ph.example.employees.infrastructure.storage;
+package de.ph.example.employees.infrastructure.driven.storage;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
