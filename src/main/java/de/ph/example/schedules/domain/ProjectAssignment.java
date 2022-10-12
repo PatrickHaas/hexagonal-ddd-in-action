@@ -35,6 +35,9 @@ public class ProjectAssignment {
         double alreadyWorkedHours = records.stream().mapToDouble(WorkingHoursRecord::calculateHours).sum();
         double remainingHours = assignedHours - alreadyWorkedHours;
         double recordHours = period.asHours();
+        if (!getPeriod().contains(period)) {
+            throw new IllegalArgumentException("the period %s does not fit the allowed period of %s".formatted(period, getPeriod()));
+        }
         if (remainingHours < recordHours) {
             throw new IllegalArgumentException("not enough hours left on assignment");
         }

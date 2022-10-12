@@ -19,4 +19,7 @@ public record DatePeriod(LocalDate start, LocalDate end) {
         return start.getYear() == year || end.getYear() == year;
     }
 
+    public boolean contains(DateTimePeriod childPeriod) {
+        return (start.isBefore(childPeriod.start().toLocalDate()) || start.isEqual(childPeriod.start().toLocalDate())) && (end.isAfter(childPeriod.end().toLocalDate()) || end.isEqual(childPeriod.end().toLocalDate()));
+    }
 }

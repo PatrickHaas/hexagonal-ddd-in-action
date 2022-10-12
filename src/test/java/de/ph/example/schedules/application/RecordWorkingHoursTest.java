@@ -44,10 +44,36 @@ class RecordWorkingHoursTest {
 
     @Test
     void recordWorkingHours_shouldFail_whenTheAssignmentHasNotEnoughHoursLeft() {
-
         DateTimePeriod period = new DateTimePeriod(
                 LocalDateTime.of(2022, 10, 11, 8, 0),
                 LocalDateTime.of(2022, 10, 11, 12, 0)
+        );
+        EmployeeId employeeId = EmployeeId.random();
+        ProjectAssignmentId projectAssignmentId = ProjectAssignmentId.random();
+        when(projectAssignments.findById(projectAssignmentId))
+                .thenReturn(Optional.of(new ProjectAssignment(null, employeeId, new DatePeriod(LocalDate.of(2022, 10, 1), LocalDate.of(2022, 10, 31)), 10.0)));
+        assertThatThrownBy(() -> recordWorkingHours.with(projectAssignmentId, period))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void recordWorkingHours_shouldFail_whenThePassingPeriodDoesStartBeforeTheAssignmentPeriod() {
+        DateTimePeriod period = new DateTimePeriod(
+                LocalDateTime.of(2022, 9, 30, 8, 0),
+                LocalDateTime.of(2022, 9, 30, 12, 0)
+        );
+        EmployeeId employeeId = EmployeeId.random();
+        ProjectAssignmentId projectAssignmentId = ProjectAssignmentId.random();
+        when(projectAssignments.findById(projectAssignmentId))
+                .thenReturn(Optional.of(new ProjectAssignment(null, employeeId, new DatePeriod(LocalDate.of(2022, 10, 1), LocalDate.of(2022, 10, 31)), 10.0)));
+        assertThatThrownBy(() -> recordWorkingHours.with(projectAssignmentId, period))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void recordWorkingHours_shouldFail_whenThePassingPeriodDoesStartAfterTheAssignmentPeriod() {
+        DateTimePeriod period = new DateTimePeriod(
+                LocalDateTime.of(2022, 11, 1, 8, 0),
+                LocalDateTime.of(2022, 11, 1, 12, 0)
         );
         EmployeeId employeeId = EmployeeId.random();
         ProjectAssignmentId projectAssignmentId = ProjectAssignmentId.random();
